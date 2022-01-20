@@ -1,0 +1,103 @@
+.main-body{
+    margin: auto;
+    padding: 50px;
+    width: 50%;
+}
+
+.page{
+    width: 700px;
+    height: 600px;
+    padding: 15px;
+    border: 0.1px solid rgb(231, 224, 224);
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+}
+
+.left-part{
+    width: 48%;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.fundoo{
+    display: flex;
+    font-size: 25px;
+
+}
+
+.create_account{
+    font-size: 20px;
+    font-weight:500;
+    color: black;
+    margin: -5vh -2vw 0vh -8vw;
+}
+
+.name{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.firstName{
+    width: 48%;
+}
+
+.lastName{
+    width: 48%;
+}
+
+.passLine{
+    display: flex;
+    width: 100%;
+    justify-content:space-evenly;
+}
+
+.password{
+    width: 48%;
+}
+
+.c-password{
+    width: 48%;
+}
+
+.pass-rule{
+    font-size: 12px;
+    font-weight:normal ;
+}
+
+.checkbox1{
+    margin: 2.5vh 1vw;
+}
+
+.showpassword{
+    display: flex;
+}
+
+.showbox{
+    font-size: 12px;
+}
+
+.signin{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+    color: blue;
+    margin: 5vh 20vw 0vh 0vw;
+}
+
+.next{
+    width: 10px;
+    height: 2px;
+}
+
+.next_button{
+    font-size: 20px;
+    color: black;
+    background-color: lightblue;
+}
+
+.sign-in{
+    display: flex;
+    justify-content: center;
+}
+
