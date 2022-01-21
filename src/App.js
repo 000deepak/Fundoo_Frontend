@@ -10,7 +10,8 @@ function App() {
     <div className="App">
       {/* <Signup /> */}
       {/* <Signin />  */}
-      <Forgot /> 
+      {/* <Forgot />  */}
+      <Reset />
     </div>
   );
 }
