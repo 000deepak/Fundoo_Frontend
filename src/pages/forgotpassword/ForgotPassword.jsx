@@ -4,6 +4,45 @@ import { TextField } from "@material-ui/core";
 import Button from "@mui/material/Button";
 
 export class Signin extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: "",
+      emailError: false,
+    };
+  }
+
+  changeHandle = (e) => {
+    console.log(e.target.value);
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  validation = () => {
+    let isError = false; //default is without error
+    const error = this.state;
+    error.emailError = this.state.email === "" ? true : false;
+    this.setState({
+      ...error,
+    });
+
+    // returns boolean
+    return (
+      //eg. if email is empty error.email is true and thus isError will be true
+      (isError = error.emailError)
+    );
+  };
+
+  next = () => {
+    var validated = this.validation();
+    if (validated) {
+      console.log("Something Missing");
+    } else {
+      console.log("Validation completed");
+    }
+  };
   render() {
     return (
       <div className="forget-main">
@@ -25,11 +64,15 @@ export class Signin extends Component {
 
             <div className="email-f">
               <TextField
+                name="email"
                 id="outlined-basic"
                 label="Email "
                 variant="outlined"
                 fullWidth
                 helperText="Enter your registered email"
+                error={this.state.emailError}
+                helperText={this.state.emailError ? "email required" : " "}
+                onChange={(e) => this.changeHandle(e)}
               />
             </div>
           </div>
@@ -39,7 +82,9 @@ export class Signin extends Component {
         <div className="next-f">
           <p className="blue-f">Create account</p>
           <div className="button-f">
-            <Button variant="contained">Next</Button>
+            <Button variant="contained" onClick={this.next}>
+              Next
+            </Button>
           </div>
         </div>
       </div>

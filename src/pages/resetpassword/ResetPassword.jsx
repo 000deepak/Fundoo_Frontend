@@ -4,6 +4,50 @@ import { TextField } from "@material-ui/core";
 import Button from "@mui/material/Button";
 
 export class Signin extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      password: "",
+      confirmPassword: "",
+      passwordError: false,
+      confirmPasswordError: false,
+    };
+  }
+
+  changeHandle = (e) => {
+    console.log(e.target.value);
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  validation = () => {
+    let isError = false; //default is without error
+    const error = this.state;
+
+    error.passwordError = this.state.password === "" ? true : false;
+    error.confirmPasswordError = this.state.confirmPassword === "" ? true : false;
+
+    this.setState({
+      ...error,
+    });
+
+    // returns boolean
+    return (
+      (isError = error.passwordError || error.confirmPasswordError)
+    );
+  };
+
+  next = () => {
+    var validated = this.validation();
+    if (validated) {
+      console.log("Something Missing");
+    } else {
+      console.log("Validation completed");
+    }
+  };
+
   render() {
     return (
       <div className="reset-main">
@@ -27,16 +71,29 @@ export class Signin extends Component {
             </p>
 
             <div className="new-r">
-              <TextField id="outlined-basic" label="New Password" variant="outlined" fullWidth />
+              <TextField
+                name="password"
+                id="outlined-basic"
+                label="New Password"
+                variant="outlined"
+                fullWidth
+                error={this.state.passwordError}
+                helperText={this.state.passwordError ? "Password required" : " "}
+                onChange={(e) => this.changeHandle(e)}
+              />
             </div>
 
             <div className="new-r">
               <TextField
+                name="confirmPassword"
                 id="outlined-basic"
                 label="Confirm Password "
                 variant="outlined"
                 fullWidth
                 helperText="Atleast 8 characters"
+                error={this.state.confirmPasswordError}
+                helperText={this.state.confirmPasswordError ? "Confirm your password" : " "}
+                onChange={(e) => this.changeHandle(e)}
               />
             </div>
           </div>
@@ -44,7 +101,7 @@ export class Signin extends Component {
         <div className="save-r">
           <p className="blue-r">Skip</p>
           <div className="button-r">
-            <Button variant="contained">Save Password</Button>
+            <Button variant="contained" onClick={this.next}>Save Password</Button>
           </div>
         </div>
       </div>

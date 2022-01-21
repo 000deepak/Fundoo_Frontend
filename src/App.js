@@ -8,7 +8,7 @@ import Forgot from "./pages/forgotpassword/ForgotPassword";
 function App() {
   return (
     <div className="App">
-      {/* <Signup /> */}
+      {/* <Signup />  */}
       {/* <Signin />  */}
       {/* <Forgot />  */}
       <Reset />

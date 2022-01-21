@@ -1,20 +1,10 @@
-.login {
-  margin: 15vw 0vw;
-  width: 60%;
-
-  display: flex;
-  justify-content: center;
-}
 
 .login-main {
   padding: 29px 20px 50px;
-  width: 140%;
+  width: 35%;
   height: 65vh;
   border-radius: 8px;
   border: 1px solid #dadce0;
-
-  margin: 15vw 0vw;
-  width: 50%;
 
   display: flex;
   flex-direction: column;
@@ -24,7 +14,7 @@
   flex-direction: column;
   align-items: center;
 
-  .fundoo {
+  .fundoo-l {
     display: flex;
 
     width: 75;
@@ -48,7 +38,7 @@
     margin-top: 0;
   }
 
-  .use {
+  .use-l {
     height: 24px;
     color: #202124;
     font-size: 16px;
@@ -57,26 +47,27 @@
     line-height: 1.5;
   }
 
-  .form {
+  .form-l {
     display: flex;
     flex-direction: column;
     align-items: start;
     width: 90%;
 
-    .email {
-      padding-bottom: 0px;
+    .email-l {
+      padding-bottom: 20px;
       padding-top: 3px;
       height: 60px;
       width: 100%;
     }
-    .password {
+    .password-l {
+      padding-bottom: 20px;
       height: 60px;
       width: 100%;
       padding-top: 20px;
     }
   }
 
-  .guest {
+  .guest-l {
     margin-left: 15px;
     text-align: left;
     padding-bottom: 3px;
@@ -86,7 +77,7 @@
     line-height: 1.4286;
   }
 
-  .blue {
+  .blue-l {
     color: #1a73e8;
     font-family: Roboto, Arial, sans-serif;
     font-size: 0.875rem;
@@ -96,7 +87,7 @@
   }
 }
 
-.create {
+.create-l {
   width: 90%;
   display: flex;
   margin-left: 15px;
