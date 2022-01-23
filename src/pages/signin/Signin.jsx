@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "../signin/signin.scss";
 import { TextField } from "@material-ui/core";
 import Button from "@mui/material/Button";
+import UserService from "../../services/userService";
+const service = new UserService();
 
 export class Signin extends Component {
   constructor(props) {
@@ -43,11 +45,26 @@ export class Signin extends Component {
 
   next = () => {
     var validated = this.validation();
-    if (validated) {
-      console.log("Something Missing");
-    } else {
-      console.log("Validation completed");
-    }
+    // if (validated) {
+    //   console.log("Something Missing");
+
+    // } else {
+    //   console.log("Validation completed");
+
+    let data = {
+      email: "dep@gmail.com",
+      password: "MERN123"
+    };
+
+    service
+      .signin(data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    //}
   };
 
   render() {
@@ -65,7 +82,7 @@ export class Signin extends Component {
 
           <p className="sign-in">Sign In</p>
 
-          <p className="use">Use Your Fundoo Account</p>
+          <p className="use-l">Use Your Fundoo Account</p>
 
           <div className="form-l">
             <div className="email-l">

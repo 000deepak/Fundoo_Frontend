@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "../signup/signup.scss";
 import { TextField } from "@material-ui/core";
 import Button from "@mui/material/Button";
+import UserService from "../../services/userService";
+const service = new UserService();
 
 export class Signup extends Component {
   constructor(props) {
@@ -30,7 +32,7 @@ export class Signup extends Component {
   };
 
   validation = () => {
-    let isError = false;    //default is without error
+    let isError = false; //default is without error
     const error = this.state;
     error.first_nameError = this.state.first_name === "" ? true : false;
     error.last_nameError = this.state.last_name === "" ? true : false;
@@ -44,22 +46,39 @@ export class Signup extends Component {
 
     // returns boolean
     return (
-      //eg. if email is empty error.email is true and thus isError will be true
-      isError =
-      error.first_nameError ||
-      error.emailError ||
-      error.last_nameError ||
-      error.passwordError ||
-      error.confirmPasswordError);
+    //eg. if email is empty error.email is true and thus isError will be true
+      (isError =
+        error.first_nameError ||
+        error.emailError ||
+        error.last_nameError ||
+        error.passwordError ||
+        error.confirmPasswordError)
+    );
   };
 
   next = () => {
-    var validated = this.validation();
-    if (validated) {
-      console.log("Something Missing");
-    } else {
-      console.log("Validation completed");
-    }
+    // var validated = this.validation();
+    // if (validated) {
+    //   console.log("Something Missing");
+    // } else {
+    //   console.log("Validation completed");
+      let data = {
+        "firstName": "MERN",
+        "lastName": "MERN",
+        "email":"de@gmail.com",
+        "password": "MERN123",
+        "service": "advance"
+      }
+
+      service
+        .registration(data)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    //}
   };
 
   render() {
@@ -82,7 +101,7 @@ export class Signup extends Component {
             <div className="name-data">
               <div className="fname">
                 <TextField
-                name="first_name"
+                  name="first_name"
                   id="outlined-basic"
                   label="First Name"
                   type="password"
@@ -90,12 +109,12 @@ export class Signup extends Component {
                   size="small"
                   error={this.state.first_nameError}
                   helperText={this.state.first_nameError ? "First Name required" : " "}
-                  onChange={e => this.changeHandle(e)}
+                  onChange={(e) => this.changeHandle(e)}
                 />
               </div>
               <div className="lname">
                 <TextField
-                name="last_name"
+                  name="last_name"
                   id="outlined-basic"
                   label="Last Name"
                   type="password"
@@ -103,7 +122,7 @@ export class Signup extends Component {
                   size="small"
                   error={this.state.last_nameError}
                   helperText={this.state.last_nameError ? "Last Name required" : " "}
-                  onChange={e => this.changeHandle(e)}
+                  onChange={(e) => this.changeHandle(e)}
                 />
               </div>
             </div>
@@ -119,14 +138,14 @@ export class Signup extends Component {
                 fullWidth
                 error={this.state.emailError}
                 helperText={this.state.emailError ? "email required" : " "}
-                onChange={e => this.changeHandle(e)}
+                onChange={(e) => this.changeHandle(e)}
               />
             </div>
             <div className="use_email">use my current email id instead</div>
             <div className="pass-data">
               <div className="password">
                 <TextField
-                name="password"
+                  name="password"
                   id="outlined-basic"
                   label="Password"
                   type="password"
@@ -136,12 +155,12 @@ export class Signup extends Component {
                   fullWidth
                   error={this.state.passwordError}
                   helperText={this.state.passwordError ? "Password required" : " "}
-                  onChange={e => this.changeHandle(e)}
+                  onChange={(e) => this.changeHandle(e)}
                 />
               </div>
               <div className="confirm">
                 <TextField
-                name="confirmPassword"
+                  name="confirmPassword"
                   id="outlined-basic"
                   label="Confirm Password"
                   type="password"
@@ -149,7 +168,7 @@ export class Signup extends Component {
                   size="small"
                   error={this.state.confirmPasswordError}
                   helperText={this.state.confirmPasswordError ? "Confirm your password" : " "}
-                  onChange={e => this.changeHandle(e)}
+                  onChange={(e) => this.changeHandle(e)}
                 />
               </div>
             </div>
@@ -161,7 +180,9 @@ export class Signup extends Component {
               <p>Sign in instead</p>
             </div>
             <div>
-              <Button variant="contained" onClick={this.next}>Next</Button>
+              <Button variant="contained" onClick={this.next}>
+                Next
+              </Button>
             </div>
           </div>
         </div>
