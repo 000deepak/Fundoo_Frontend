@@ -25,7 +25,7 @@ export class Signup extends Component {
   }
 
   changeHandle = (e) => {
-    console.log(e.target.value);
+    console.log(e);
     this.setState({
       [e.target.name]: e.target.value,
     });
@@ -46,7 +46,7 @@ export class Signup extends Component {
 
     // returns boolean
     return (
-    //eg. if email is empty error.email is true and thus isError will be true
+      //eg. if email is empty error.emailError is true and thus isError will be true
       (isError =
         error.first_nameError ||
         error.emailError ||
@@ -57,28 +57,13 @@ export class Signup extends Component {
   };
 
   next = () => {
-    // var validated = this.validation();
-    // if (validated) {
-    //   console.log("Something Missing");
-    // } else {
-    //   console.log("Validation completed");
-      let data = {
-        "firstName": "MERN",
-        "lastName": "MERN",
-        "email":"de@gmail.com",
-        "password": "MERN123",
-        "service": "advance"
-      }
-
-      service
-        .registration(data)
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    //}
+    var validated = this.validation();
+    if (validated) {
+      console.log("Something Missing");
+    } else {
+      console.log("Validation completed");
+   
+    }
   };
 
   render() {
@@ -86,7 +71,7 @@ export class Signup extends Component {
       <div className="main-body">
         {/* left body */}
         <div className="left-body">
-          <div className="Fundoo">
+          <div className="fundoo-s">
             <p style={{ color: "blue" }}>F</p>
             <p style={{ color: "red" }}>u</p>
             <p style={{ color: "yellow" }}>n</p>
@@ -99,27 +84,30 @@ export class Signup extends Component {
           {/* form */}
           <div className="form-s">
             <div className="name-data">
-              <div className="fname">
+              <div className="name">
                 <TextField
                   name="first_name"
                   id="outlined-basic"
                   label="First Name"
-                  type="password"
+                  type="text"
                   variant="outlined"
+                  autoFocus={true}
+                  fullWidth
                   size="small"
                   error={this.state.first_nameError}
                   helperText={this.state.first_nameError ? "First Name required" : " "}
                   onChange={(e) => this.changeHandle(e)}
                 />
               </div>
-              <div className="lname">
+              <div className="name">
                 <TextField
                   name="last_name"
                   id="outlined-basic"
                   label="Last Name"
-                  type="password"
+                  type="text"
                   variant="outlined"
                   size="small"
+                  fullWidth
                   error={this.state.last_nameError}
                   helperText={this.state.last_nameError ? "Last Name required" : " "}
                   onChange={(e) => this.changeHandle(e)}
@@ -132,12 +120,16 @@ export class Signup extends Component {
                 id="outlined-basic"
                 label="Email"
                 size="small"
-                type="email"
+                type="text"
                 variant="outlined"
                 helperText="You can use letters,numbers and periods"
                 fullWidth
                 error={this.state.emailError}
-                helperText={this.state.emailError ? "email required" : " "}
+                helperText={
+                  this.state.emailError
+                    ? "email required"
+                    : "You can use letters,numbers and periods"
+                }
                 onChange={(e) => this.changeHandle(e)}
               />
             </div>
@@ -149,7 +141,7 @@ export class Signup extends Component {
                   id="outlined-basic"
                   label="Password"
                   type="password"
-                  helperText="Use 8 or more characters with a mix of letters, numbers & symbols"
+                  // helperText="Use 8 or more characters with a mix of letters, numbers & symbols"
                   variant="outlined"
                   size="small"
                   fullWidth
@@ -158,7 +150,7 @@ export class Signup extends Component {
                   onChange={(e) => this.changeHandle(e)}
                 />
               </div>
-              <div className="confirm">
+              <div className="password">
                 <TextField
                   name="confirmPassword"
                   id="outlined-basic"
@@ -166,12 +158,14 @@ export class Signup extends Component {
                   type="password"
                   variant="outlined"
                   size="small"
+                  fullWidth
                   error={this.state.confirmPasswordError}
                   helperText={this.state.confirmPasswordError ? "Confirm your password" : " "}
                   onChange={(e) => this.changeHandle(e)}
                 />
               </div>
             </div>
+            {/* <div className="pass-suggest">Use 8 or more characters with a mix of letters, numbers & symbols</div> */}
           </div>
 
           {/* button */}
@@ -179,7 +173,7 @@ export class Signup extends Component {
             <div className="sign-instead">
               <p>Sign in instead</p>
             </div>
-            <div>
+            <div className="button-s">
               <Button variant="contained" onClick={this.next}>
                 Next
               </Button>
@@ -206,11 +200,3 @@ export class Signup extends Component {
 }
 
 export default Signup;
-
-{
-  /* <TextField id="outlined-basic" 
-    id="outlined-basic"
-    label="Confirm Password" 
-    type="password" 
-    variant="outlined" /> */
-}

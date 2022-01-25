@@ -5,14 +5,18 @@ import Signin from "./pages/signin/Signin";
 import Reset from "./pages/resetpassword/ResetPassword";
 import Forgot from "./pages/forgotpassword/ForgotPassword";
 
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
 function App() {
   return (
-    <div className="App">
-      {/* <Signup />  */}
-      <Signin /> 
-      {/* <Forgot />  */}
-      {/* <Reset /> */}
-    </div>
+    <Router>
+      <Routes>
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/forgotpassword" element={<Forgot />} />
+          <Route path="/resetpassword" element={<Reset />} />
+      </Routes>
+    </Router>
   );
 }
 

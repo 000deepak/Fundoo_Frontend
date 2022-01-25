@@ -1,36 +1,47 @@
+html {
+  font-size: 62.5%;
+  font-size: calc(
+    [minimum size] + ([maximum size] - [minimum size]) *
+      ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width]))
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .main-body {
-  border-radius: 8px;
-  border: 1px solid #dadce0;
-  height: 600px;
-  width: 55%;
+  border-radius: 0.8rem;
+  border: 0.1rem solid #dadce0;
+  height: 60rem;
+  width: 70rem;
   display: flex;
 
-  .left-body {
-    width: 75%;
-    height: 65vh;
+  .fundoo-s {
     display: flex;
-    padding: 25px;
+    direction: ltr;
+    font-size: 2.5rem;
+    line-height: 1.4286;
+    color: #202124;
+    font-family: roboto, "Noto Sans Myanmar UI", arial, sans-serif;
+  }
+
+  .create {
+    padding: 0px 0px 1.5rem 0px;
+    color: #202124;
+    font-size: 2.4rem;
+    font-weight: 400;
+    line-height: 1.3333;
+  }
+
+  .left-body {
+    width: 90rem;
+    height: 60rem;
+    display: flex;
+    padding: 2.5rem;
 
     display: flex;
     flex-direction: column;
     align-items: start;
-
-    .Fundoo {
-      display: flex;
-      direction: ltr;
-      font-size: 25px;
-      line-height: 1.4286;
-      color: #202124;
-      font-family: roboto, "Noto Sans Myanmar UI", arial, sans-serif;
-    }
-
-    .create {
-      padding: 0px 0px 15px 0px;
-      color: #202124;
-      font-size: 24px;
-      font-weight: 400;
-      line-height: 1.3333;
-    }
 
     .form-s {
       width: 100%;
@@ -42,48 +53,106 @@
       .pass-data {
         display: flex;
         justify-content: space-between;
-        height: 50px;
+        width: 100%;
+        height: 5rem;
       }
 
-      .name-data{
-        padding-bottom: 15px;
-
+      .name-data {
+        padding-bottom: 1.5rem;
       }
       .email-data {
-        width: 98%;
+        width: 100%;
       }
-      .fname,
-      .lname,
-      .password,
-      .confirm {
-        width: 50%;
-        padding-right: 10px;
-        padding-bottom: 500px;
+      .name,
+      .password {
+        width: 48%;
+        padding-bottom: 0rem;
       }
 
+      .MuiFormHelperText-root {
+        font-size: 1rem;
+      }
 
+      .MuiFormLabel-root {
+        font-size: 1.5rem;
+      }
       .use_email {
-        padding: 0px 0px 15px 0px;
+        font-weight: 600;
+        padding: 0rem 0rem 1.5rem 0rem;
         color: #1a73e8;
-        font-size: 15px;
+        font-size: 1.5rem;
       }
     }
   }
 
   .next-s {
-    color: #1a73e8;
-    width: 100%;
+    width: 99%;
     display: flex;
     justify-content: space-between;
-    padding-top: 80px;
+    align-items: center;
+    padding-top: 4rem;
+
+    .sign-instead {
+      // font-weight: bold;
+      font-weight: 600;
+      color: #1a73e8;
+      font-size: 1.5rem;
+    }
+
+    .css-sghohy-MuiButtonBase-root-MuiButton-root {
+      min-width: 6.8rem;
+      min-height: 2.8rem;
+      font-size: 1rem;
+    }
+
+    .pass-suggest {
+      color: rgba(0, 0, 0, 0.54);
+      margin: 0;
+      font-size: 0.75rem;
+      margin-top: 3px;
+      text-align: left;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      font-weight: 400;
+      line-height: 1.66;
+      letter-spacing: 0.03333em;
+    }
   }
 
   .right-body-s {
     width: 40%;
     height: 100%;
+    font-size: 1.5rem;
 
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+}
+
+//when size goes below this font size changes to 55%
+@media (max-width: 998px) {
+  html {
+    font-size: 55%;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 45%;
+  }
+}
+
+@media (max-width: 430px) {
+  html {
+    font-size: 30%;
+  }
+  .right-body-s {
+    display: none !important;
+  }
+
+  .name-data,
+  .pass-data {
+    display: flex;
+    flex-direction: column;
   }
 }
