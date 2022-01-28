@@ -1,0 +1,30 @@
+.main {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10rem;
+  height: 1rem;
+  width: 100%;
+
+  .sub {
+    background-color: #fff;
+    border-color: #e0e0e0;
+    border: 1px solid #dadce0;
+    border-radius: 1rem;
+    width: 15vw;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 1rem;
+
+    .title {
+      width: 4rem;
+      padding-left: 10px;
+    }
+    .notes {
+      width: 100%;
+      padding-left: .8rem;
+    }
+    margin-top: 2.5rem;
+  }
+}
