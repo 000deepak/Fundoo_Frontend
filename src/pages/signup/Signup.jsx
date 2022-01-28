@@ -62,7 +62,21 @@ export class Signup extends Component {
       console.log("Something Missing");
     } else {
       console.log("Validation completed");
-   
+      let data = {
+        "fName": this.state.first_name,
+        "lName": this.state.last_name,
+        "email": this.state.email,
+        "password": this.state.password,
+      };
+
+      service
+        .registration(data)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 

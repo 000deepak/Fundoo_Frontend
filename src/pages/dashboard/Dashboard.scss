@@ -1,0 +1,39 @@
+.mainHeader{
+    display: flex;
+    align-items: center;
+    // justify-content: center;
+    width: 100%;
+    height: 1rem;
+    .searchBar{
+        margin: 0vh 6vw;
+        align-items: center;
+        display: flex;
+        width: 65%;
+        background-color: lightgrey;
+        border-radius: .5rem;
+        .search{
+            font-size: 1.2rem;
+            height: 2.5rem;
+            width: 100%;
+            border: none;
+            outline: none;
+            background-color: lightgrey;
+            border-radius: 1rem;
+        }
+    }
+    .headBar{
+        justify-content: space-evenly;
+        .headerIcon{
+            display: flex;
+            font-size: 20rem;
+            color: #777777;
+            justify-content: space-between;
+        }
+    }
+}
+
+.iconName{
+    display: flex;
+    flex-direction: column;
+    padding-left: 15rem;
+}

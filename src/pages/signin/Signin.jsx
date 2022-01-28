@@ -4,6 +4,7 @@ import { TextField } from "@material-ui/core";
 import Button from "@mui/material/Button";
 import UserService from "../../services/userService";
 const service = new UserService();
+// import { useNavigate } from "react-router";
 
 export class Signin extends Component {
   constructor(props) {
@@ -45,26 +46,26 @@ export class Signin extends Component {
 
   next = () => {
     var validated = this.validation();
-    // if (validated) {
-    //   console.log("Something Missing");
+    if (validated) {
+      console.log("Something Missing");
+    } else {
+      console.log("Validation completed");
+      let data = {
+        "email": this.state.email,
+        "password": this.state.password,
+      };
 
-    // } else {
-    //   console.log("Validation completed");
-
-    let data = {
-      email: "dep@gmail.com",
-      password: "MERN123"
-    };
-
-    service
-      .signin(data)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    //}
+      service
+        .signin(data)
+        .then((res) => {
+          console.log(res);
+          localStorage.setItem('token', res.data.data.token)
+          // navigate("/Dashboard")
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   render() {
@@ -106,6 +107,7 @@ export class Signin extends Component {
                 id="outlined-basic"
                 label="Your Password "
                 variant="outlined"
+                type="password"
                 fullWidth
                 helperText=" "
                 error={this.state.passwordError}

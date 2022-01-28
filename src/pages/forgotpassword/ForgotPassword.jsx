@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "../forgotpassword/forgotpassword.scss";
 import { TextField } from "@material-ui/core";
 import Button from "@mui/material/Button";
+import UserService from "../../services/userService";
+const service = new UserService();
 
 export class Signin extends Component {
   constructor(props) {
@@ -41,6 +43,18 @@ export class Signin extends Component {
       console.log("Something Missing");
     } else {
       console.log("Validation completed");
+      let data = {
+        "email": this.state.email,
+      };
+
+      service
+        .forgotpassword(data)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
   render() {
