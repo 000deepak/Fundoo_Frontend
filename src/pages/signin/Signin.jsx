@@ -4,7 +4,6 @@ import { TextField } from "@material-ui/core";
 import Button from "@mui/material/Button";
 import UserService from "../../services/userService";
 const service = new UserService();
-// import { useNavigate } from "react-router";
 
 export class Signin extends Component {
   constructor(props) {
@@ -60,7 +59,6 @@ export class Signin extends Component {
         .then((res) => {
           console.log(res);
           localStorage.setItem('token', res.data.data.token)
-          // navigate("/Dashboard")
         })
         .catch((err) => {
           console.log(err);

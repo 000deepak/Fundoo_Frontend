@@ -1,0 +1,23 @@
+.notesMain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0rem;
+
+  .takediv {
+    margin-top: 0px;
+   
+  }
+
+  .displaydiv {
+    display: grid;
+    grid-gap:1rem;
+    grid-template-columns: repeat(4, 1fr);
+    // grid-template-columns: auto auto auto auto;
+  
+
+  }
+
+  
+}

@@ -1,21 +1,15 @@
-.main {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 10rem;
-  height: 1rem;
-  width: 100%;
-
-  .sub {
+.mainContainer {
+  .subContainer {
     background-color: #fff;
     border-color: #e0e0e0;
     border: 1px solid #dadce0;
     border-radius: 1rem;
-    width: 15vw;
-    height: 20vh;
+    width: 18vw;
+    height: 18vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding-left: 1rem;
+    padding-left: 0.5rem;
 
     .title {
       width: 4rem;
@@ -23,7 +17,7 @@
     }
     .notes {
       width: 100%;
-      padding-left: .8rem;
+      padding-left: 0.8rem;
     }
     margin-top: 2.5rem;
   }

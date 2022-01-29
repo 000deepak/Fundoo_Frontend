@@ -22,8 +22,8 @@
     }
 }
 .newsecond{
-    width: 598px;
-    // height: 46px;
+    width: 40vw;
+    height: 30vh;
     padding: 1rem 1.6rem 1.2rem 1.6rem;
     border-color: #e0e0e0;
     border: .2rem solid #dadce0;
@@ -33,6 +33,7 @@
     font-family: Roboto,Arial,sans-serif;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     .text-area{
         border: none;
         outline: none;
@@ -42,8 +43,9 @@
         display: flex;
         .icons-set{
             width: 80%;
+        
         }
-        .button-icon{
+        .closebutton{
             background-color: white;
             border:none;
             color:#636161;

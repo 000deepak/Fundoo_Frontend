@@ -23,34 +23,13 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import AppsOutlinedIcon from "@mui/icons-material/AppsOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
+import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 
 import "../dashboard/Dashboard.scss";
 import Notes from "../notes/Notes";
 
 const drawerWidth = 240;
-
-let iconLists = [
-  {
-    iconNames: <LightbulbOutlinedIcon />,
-    iconTexts: "Notes",
-  },
-  {
-    iconNames: <NotificationsOutlinedIcon />,
-    iconTexts: "Reminders",
-  },
-  {
-    iconNames: <ModeEditOutlineOutlinedIcon />,
-    iconTexts: "Edit labels",
-  },
-  {
-    iconNames: <ArchiveOutlinedIcon />,
-    iconTexts: "Archive",
-  },
-  {
-    iconNames: <DeleteOutlineOutlinedIcon />,
-    iconTexts: "Spam",
-  },
-];
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -78,8 +57,8 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "flex-end",
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
+  backgroundcolor: "#fff",
 }));
 
 const AppBar = styled(MuiAppBar, {
@@ -89,10 +68,10 @@ const AppBar = styled(MuiAppBar, {
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
+    backgroundColor: "#fff",
   }),
   ...(open && {
     marginLeft: drawerWidth,
-    // width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -100,33 +79,52 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" })(
-  ({ theme, open }) => ({
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: "nowrap",
-    boxSizing: "border-box",
-    ...(open && {
-      ...openedMixin(theme),
-      "& .MuiDrawer-paper": openedMixin(theme),
-    }),
-    ...(!open && {
-      ...closedMixin(theme),
-      "& .MuiDrawer-paper": closedMixin(theme),
-    }),
-  })
-);
+const Drawer = styled(MuiDrawer, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
+  width: drawerWidth,
+  flexShrink: 0,
+  whiteSpace: "nowrap",
+  boxSizing: "border-box",
+  ...(open && {
+    ...openedMixin(theme),
+    "& .MuiDrawer-paper": openedMixin(theme),
+  }),
+  ...(!open && {
+    ...closedMixin(theme),
+    "& .MuiDrawer-paper": closedMixin(theme),
+  }),
+}));
 
 export default function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
+  let iconlist = [
+    {
+      icons: <LightbulbOutlinedIcon />,
+      iText: "Notes",
+    },
+    {
+      icons: <NotificationsOutlinedIcon />,
+      iText: "Reminders",
+    },
+    {
+      icons: <CreateOutlinedIcon />,
+      iText: "Edit Labels",
+    },
+    {
+      icons: <ArchiveOutlinedIcon />,
+      iText: "Archive",
+    },
+    {
+      icons: <DeleteForeverOutlinedIcon />,
+      iText: "Bin",
+    },
+  ];
+
   const handleDrawerOpen = () => {
     setOpen(!open);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
   };
 
   return (
@@ -143,18 +141,21 @@ export default function MiniDrawer() {
             <MenuIcon />
           </IconButton>
           <div className="mainHeader">
-            <img
-              src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png"
-              alt="logo"
-            />
+            <div className="fundoologo">
+              <img
+                src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png"
+                alt="logo"
+              />
+            </div>
 
             <Typography variant="h5" noWrap component="div">
-              Fundoo
+              Fundoo Notes
             </Typography>
+
             <div className="searchBar">
-              <SearchOutlinedIcon />
               <input className="search" type="text" placeholder="Search"></input>
             </div>
+
             <div className="headBar">
               <ul className="headerIcon">
                 <IconButton>
@@ -183,20 +184,23 @@ export default function MiniDrawer() {
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
+        <DrawerHeader></DrawerHeader>
+
         <List>
-          {iconLists.map((text, index) => (
-            <ListItem button key={text.iconNames}>
-              <ListItemIcon>{text.iconNames}</ListItemIcon>
-              <ListItemText primary={text.iconTexts} />
+          {iconlist.map((text, index) => (
+            <ListItem button key={text.iText}>
+              <ListItemIcon>{text.icons}</ListItemIcon>
+              <ListItemText primary={text.iText} />
             </ListItem>
           ))}
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Typography className="includeNotes">
-          <Notes />
-        </Typography>
+
+        <Notes />
+
+        <Typography paragraph></Typography>
       </Box>
     </Box>
   );

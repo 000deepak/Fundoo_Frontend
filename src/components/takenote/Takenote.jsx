@@ -10,67 +10,100 @@ import { Input } from "@mui/material";
 import service from "../../services/notesService";
 import "./takenote.scss";
 
-
 function Takenote(props) {
-    const [newNote, setNote] = useState(true)
-    const [data, setData] = useState({
-        title: '',
-        description: '',
-        colour:'',
-        isArchived:'',
-        isDeleted:'',
-    })
+  const [closed, setClosed] = useState(true);
 
-    const changedata = (e) => {
-        setData((previousstate) => {
-            return { ...previousstate, [e.target.name]: e.target.value }
-        })
-    }
+  const [data, setData] = useState({
+    title: "",
+    description: "",
+    colour: "#e0e0e0",
+    isArchived: false,
+    isDeleted: false,
+  });
 
+  const changedata = (e) => {
+    setData((previousstate) => {
+      return { ...previousstate, [e.target.name]: e.target.value };
+    });
+  };
 
-    const close = () => {
-        let notedata = {
-            "title": data.title,
-            "description": data.description,
-            "colour":"black",
-            "isArchived":false,
-            "isDeleted":false
-        }
-        setNote(true)
-        service.addnotes(notedata).then(() => {
-            props.getnote();
-            console.log("sucess", notedata);
-        }).catch((err) => {
-            console.log(err,"error");
-        })
-    }
+  //when close is clicked
+  const close = () => {
+    let notedata = {
+      title: data.title,
+      description: data.description,
+      colour: data.colour,
+      isArchived: data.isArchived,
+      isDeleted: data.isDeleted,
+    };
 
-    return <div >
-        {newNote ?
-            <div className='newfirst' onClick={() => setNote(false)}>
-                <div className='newnote'>Take a note...</div>
-                <div className='newicons'>
-                    <div><CheckBoxOutlinedIcon htmlColor="grey" /></div>
-                    <div><BrushOutlinedIcon htmlColor="grey" /></div>
-                    <div><InsertPhotoOutlinedIcon htmlColor="grey" /></div>
-                </div>
+    //1.set current data
+    setClosed(true);
+
+    //2.send add note request
+    service
+      .addnotes(notedata)
+      .then((result) => {
+        //3.get notes
+        props.getnote();
+        console.log("Notes Saved", result);
+      })
+      .catch((err) => {
+        console.log("Error In Saving Data", err);
+      });
+  };
+
+  return (
+    <div /* onClick={() => setClose(false)} */>
+      {closed ? (
+        <div className="newfirst" onClick={() => setClosed(false)}>
+          <div className="newnote">Take A Note...</div>
+          <div className="newicons">
+            <div>
+              <CheckBoxOutlinedIcon htmlColor="grey" />
             </div>
-            :
-            <div className='newsecond' >
-                <div> <TextareaAutosize name="title" placeholder="Title"  className='text-area' rows="1" cols="50" onChange={(e) => changedata(e)} >
-                    
-                </TextareaAutosize></div>
-                <div> <textarea name="description" placeholder="Take a note..."  className='text-area' rows="5" cols="50" onChange={(e) => changedata(e)} >
-                </textarea></div>
-                <div className='newbutton'>
-                    <Icons className='icons-set' />
-                    <button className='button-icon' onClick={() => close()}>close</button>
-                </div>
-
+            <div>
+              <BrushOutlinedIcon htmlColor="grey" />
             </div>
-        }
-
-    </div>;
+            <div>
+              <InsertPhotoOutlinedIcon htmlColor="grey" />
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="newsecond">
+          <div>
+            {" "}
+            <TextareaAutosize
+              name="title"
+              placeholder="Title"
+              className="text-area"
+              rows="1"
+              cols="50"
+              onChange={(e) => changedata(e)}
+            ></TextareaAutosize>
+          </div>
+          <div>
+            {" "}
+            <TextareaAutosize
+              name="description"
+              placeholder="Take A Note..."
+              className="text-area"
+              rows="10"
+              cols="50"
+              onChange={(e) => changedata(e)}
+            ></TextareaAutosize>
+          </div>
+          <div className="newbutton">
+            <Icons className="icons-set" />
+            <button className="closebutton" onClick={() => close()}>
+              close
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default Takenote;
