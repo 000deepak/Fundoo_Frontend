@@ -1,55 +1,54 @@
-.newfirst{
-    width: 40vw;
-    height: 6vh;
-    padding: 0.6rem 1.6rem 1.2rem 1.6rem;
-    border-color: #e0e0e0;
-    border:1px solid #dadce0;
-    box-shadow: inset 1px 1px 0 #0000001a, inset 0 -1px 0 #00000012;
-    border-radius: .5rem;
-    font-weight: 300;
-    font-family: Roboto,Arial,sans-serif;
+.newfirst {
+  width: 45vw;
+  height: 6vh;
+  padding: 0.6rem 1.6rem 1.2rem 1.6rem;
+  border-color: #e0e0e0;
+  border: 1px solid #dadce0;
+  box-shadow: inset 1px 1px 0 #0000001a, inset 0 -1px 0 #00000012;
+  border-radius: 0.5rem;
+  font-weight: 300;
+  font-family: Roboto, Arial, sans-serif;
+  display: flex;
+  box-shadow: 0.2rem 0.2rem 0.2rem 0.1rem#b8b3b3;
+  .newicons {
+    width: 30%;
     display: flex;
-    box-shadow:.2rem .2rem .2rem .1rem#b8b3b3 ;
-    .newicons{
-        width: 30%;
-        display: flex;
-        justify-content: space-between;
-        
-    }
-    .newnote{
-        width: 70%;
-        color: #797777;
-    }
+    justify-content: space-between;
+  }
+  .newnote {
+    width: 70%;
+    color: #797777;
+  }
 }
-.newsecond{
-    width: 40vw;
-    height: 30vh;
-    padding: 1rem 1.6rem 1.2rem 1.6rem;
-    border-color: #e0e0e0;
-    border: .2rem solid #dadce0;
-    box-shadow: inset 1px 1px 0 #0000001a, inset 0 -1px 0 #00000012;
-    border-radius: .5rem;
-    font-weight: 300;
-    font-family: Roboto,Arial,sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    .text-area{
-        border: none;
-        outline: none;
-    }
+.newsecond {
+  width: 45vw;
+  height: 25vh;
+  padding: 1rem 1.6rem 1.2rem 1.6rem;
+  border-color: #e0e0e0;
+  border: 0.2rem solid #dadce0;
+  box-shadow: inset 1px 1px 0 #0000001a, inset 0 -1px 0 #00000012;
+  border-radius: 0.5rem;
+  font-weight: 300;
+  font-family: Roboto, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .text-area {
+    border: none;
+    outline: none;
+  }
 
-    .newbutton{
-        display: flex;
-        .icons-set{
-            width: 80%;
-        
-        }
-        .closebutton{
-            background-color: white;
-            border:none;
-            color:#636161;
-            font-size: 1rem;
-        }
+  .newbutton {
+    display: flex;
+    .icons-set {
+      width: 80%;
+      // margin-bottom: 2rem;
     }
+    .closebutton {
+      background-color: white;
+      border: none;
+      color: #636161;
+      font-size: 1rem;
+    }
+  }
 }

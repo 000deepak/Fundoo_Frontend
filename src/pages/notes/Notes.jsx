@@ -19,7 +19,7 @@ function Notes() {
       .then((result) => {
         //2.set current state
         setNotesArr(result.data.data);
-        console.log(result.data.data);
+        //console.log(result.data.data);
         console.log("Notes Fetched", result);
       })
       .catch((err) => {
@@ -32,7 +32,7 @@ function Notes() {
         <Takenote getnote={getNotes} />
       </div>
       <div className="displaydiv">
-        <Displaynote notesArr={notesArr} className="dis" />
+        <Displaynote notesArr={notesArr}  getnote={getNotes} />
       </div>
     </div>
   );

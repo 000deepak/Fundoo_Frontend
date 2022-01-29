@@ -8,6 +8,10 @@ class AxiosService {
     getMethod(url,headers = false) {
         return axios.get(url,headers)
     }
+
+    putMethod(url, data, headers = false) {
+        return axios.put(url, data, headers)
+    }
 }
 
 export default AxiosService

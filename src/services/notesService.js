@@ -17,6 +17,9 @@ const NotesService = {
     },
     getnotes: (data) => {
         return service.getMethod(`${url}/notes/notes`,header)
+    },
+    updatenotes: (data) => {
+        return service.putMethod(`${url}/notes/update`,data,header)
     }
 }
 

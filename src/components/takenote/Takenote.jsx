@@ -12,12 +12,28 @@ import "./takenote.scss";
 
 function Takenote(props) {
   const [closed, setClosed] = useState(true);
+  const [colour, setColour] = useState("#e0e0e0");
+  const [archive, setArchive] = useState(false);
 
+  //setting current colour data,passed in Icon
+  const handleColour = (hex) => {
+    console.log("take a note",hex);
+    setColour(hex);
+  };
+
+  //setting current archive data,passed in Icon
+  const handleArchive = () => {
+    setArchive(true);
+    console.log("take a note",archive);
+  };
+  console.log(archive);
+
+  //setting current data
   const [data, setData] = useState({
     title: "",
     description: "",
-    colour: "#e0e0e0",
-    isArchived: false,
+    // colour: colour,
+    // isArchived: archive,
     isDeleted: false,
   });
 
@@ -29,11 +45,12 @@ function Takenote(props) {
 
   //when close is clicked
   const close = () => {
+    //console.log(data);
     let notedata = {
       title: data.title,
       description: data.description,
-      colour: data.colour,
-      isArchived: data.isArchived,
+      colour: colour,
+      isArchived: archive,
       isDeleted: data.isDeleted,
     };
 
@@ -71,7 +88,7 @@ function Takenote(props) {
           </div>
         </div>
       ) : (
-        <div className="newsecond">
+        <div className="newsecond" style={{ backgroundcolour: colour }}>
           <div>
             {" "}
             <TextareaAutosize
@@ -94,8 +111,15 @@ function Takenote(props) {
               onChange={(e) => changedata(e)}
             ></TextareaAutosize>
           </div>
+
+          {/* handle archive and colour */}
           <div className="newbutton">
-            <Icons className="icons-set" />
+            <Icons
+              className="icons-set"
+              mode="create"
+              handleColour={handleColour}
+              handleArchive={handleArchive}
+            />
             <button className="closebutton" onClick={() => close()}>
               close
             </button>

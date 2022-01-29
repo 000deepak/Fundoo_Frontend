@@ -199,8 +199,6 @@ export default function MiniDrawer() {
         <DrawerHeader />
 
         <Notes />
-
-        <Typography paragraph></Typography>
       </Box>
     </Box>
   );
