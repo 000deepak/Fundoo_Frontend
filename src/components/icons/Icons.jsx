@@ -9,65 +9,31 @@ import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import Typography from "@mui/material/Typography";
 import Popover from "@mui/material/Popover";
-
+import MenuItem from "@material-ui/core/MenuItem";
 import service from "../../services/notesService";
 import "./icons.scss";
 
 function Icons(props) {
-  const [colr, setColour] = useState(null);
+  //------------------------------------------------popper
 
-  const handleOpenColour = (event) => {
-    setColour(event.currentTarget);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleOpen = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
-    setColour(null);
+    setAnchorEl(null);
   };
 
-  const open = Boolean(colr);
+  const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
-  const changeColour = (hex) => {
-    if (props.mode == "create") {
-      props.handleColour(hex);
-      console.log("create", hex);
-    } else {
-      console.log("update", hex);
-      //console.log("hi icons", props);
-      //props.note.colour = hex;
-      //console.log("in change colour", props.note);
-      // service
-      //   .updatenotes(props.note)
-      //   .then((res) => {
-      //     console.log(res);
-      //   })
-      //   .catch((err) => {
-      //     console.log("Error in Updating" + err);
-      //   });
-      // props.getnote();
-    }
-  };
+  //------------------------------------------------popper(END)
 
-  const changeArchive = () => {
-    if (props.mode == "create") {
-      props.handleArchive();
-      console.log("create archive");
-    } else {
-      console.log("update archive");
-      // console.log("hi icons", props);
-      //props.note.colour=hex;
-      //console.log(props.note);
-      // service
-      //   .updatenotes(props.note)
-      //   .then((res) => {
-      //     console.log(res);
-      //   })
-      //   .catch((err) => {
-      //     console.log("Error in Updating" + err);
-      //   });
-      // props.getnote();
-    }
-  };
+  //------------------------------------------------Colour
+
+  const [colr, setColour] = useState(null);
 
   let hexColour = [
     "#f28b82",
@@ -82,57 +48,168 @@ function Icons(props) {
     "#e6c9a8",
   ];
 
+  const changeColour = (hex) => {
+    if (props.mode == "create") {
+      props.handleColour(hex);
+      console.log("create", hex);
+    } else {
+      console.log("update", hex);
+
+      // updateNotes(data);
+    }
+  };
+  //------------------------------------------------Colour(END)
+
+  //------------------------------------------------Archive
+
+  const changeArchive = () => {
+    if (props.mode == "create") {
+      props.handleArchive();
+      console.log("create archive");
+    } else {
+      console.log("update archive");
+
+      props.note.isArchived = true;
+
+      props.note.noteId = props.note._id;
+
+      updateNotes(props.note);
+    }
+  };
+  //------------------------------------------------Archive(END)
+
+  //------------------------------------------------More
+
+  const [more, setMore] = useState(false);
+
+  let More = ["Delete note"];
+
+  const handleOpenMore = (e) => {
+    setMore(e.currentTarget);
+  };
+
+  //close more
+  const handleCloseMore = () => {
+    setMore({
+      more: false,
+    });
+  };
+
+  const handleMore = () => {
+    console.log("More Delete");
+    // delete-part
+
+    // noteService.deleteNote(data)
+    // .then(res =>{
+    //     console.log(res)
+    //     this.props.updateNote()
+    // })
+    // .catch(err =>{
+    //     console.log( "U have an Error ->" + err)
+    // })
+  };
+
+  //------------------------------------------------More(END)
+
+  //------------------------------------------------update
+
+  //update notes in DB & display
+  const updateNotes = (data) => {
+    service
+      //1.update notes
+      .updatenotes(data)
+      .then((result) => {
+        //2.set current state
+        // setNotesArr(result.data.data);
+        //props.getnote();
+        console.log("Notes Updated", result);
+      })
+      .catch((err) => {
+        console.log("Error in Updating notes", err);
+      });
+  };
+
+  //------------------------------------------------update(END)
+
   return (
     <div className="icons">
-      <IconButton>
-        <AddAlertOutlinedIcon htmlColor="grey" />
-      </IconButton>
-      <IconButton>
-        <PersonAddAlt1OutlinedIcon htmlColor="grey" />
-      </IconButton>
-      <IconButton>
-        <PhotoOutlinedIcon htmlColor="grey" />
-      </IconButton>
+      <div>
+        <IconButton>
+          <AddAlertOutlinedIcon htmlColor="grey" />
+        </IconButton>
+      </div>
+      <div>
+        <IconButton>
+          <PersonAddAlt1OutlinedIcon htmlColor="grey" />
+        </IconButton>
+      </div>
 
-      {/* isArchived */}
-      <IconButton>
-        <ArchiveOutlinedIcon htmlColor="grey" onClick={changeArchive} />
-      </IconButton>
+      <div>
+        <IconButton>
+          <PhotoOutlinedIcon htmlColor="grey" />
+        </IconButton>
+      </div>
 
-      {/* More */}
-      <IconButton>
-        <MoreVertOutlinedIcon htmlColor="grey" />
-      </IconButton>
+      <div>
+        {/* isArchived */}
+        <IconButton onClick={changeArchive}>
+          <ArchiveOutlinedIcon htmlColor="grey" />
+        </IconButton>
+      </div>
+
+      <div>
+        {/* More */}
+        <IconButton>
+          <MoreVertOutlinedIcon onClick={handleOpenMore} />
+          <Popover
+            id="simple-menu"
+            anchorEl={more}
+            keepMounted
+            open={Boolean(more)}
+            onClose={handleCloseMore}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
+            }}
+          >
+            {More.map((more, index) => (
+              <MenuItem onClick={() => handleMore(more)}>{more}</MenuItem>
+            ))}
+          </Popover>
+        </IconButton>
+      </div>
 
       {/* colour */}
       <div>
         <IconButton>
           <ColorLensOutlinedIcon
-            onClick={handleOpenColour}
-            // variant="contained"
-            // aria-describedby={id}
+            htmlColor="grey"
+            onClick={handleOpen}
+            variant="contained"
+            aria-describedby={id}
           />
           <Popover
-            id="simple-popover"
+            id={id}
             open={open}
-            anchorEl={colr}
+            anchorEl={anchorEl}
             onClose={handleClose}
             anchorOrigin={{
               vertical: "bottom",
               horizontal: "left",
             }}
           >
-            <div className="icon-popover">
-              {hexColour.map((hex) => {
-                return (
-                  <div
-                    className="icon-pop"
-                    style={{ backgroundColor: hex }}
-                    /* onClick={changeColour(hex)} */
-                  ></div>
-                );
-              })}
-            </div>
+            <Typography sx={{ p: 1 }}>
+              <div className="icon-popover">
+                {hexColour.map((hex) => {
+                  return (
+                    <div
+                      className="icon-pop"
+                      style={{ backgroundColor: hex }} /* onClick={changeColour()} */
+                    ></div>
+                  );
+                })}
+              </div>
+            </Typography>
           </Popover>
         </IconButton>
       </div>

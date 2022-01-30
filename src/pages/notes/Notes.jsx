@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import Displaynote from "../../components/displaynote/Displaynote";
 import Takenote from "../../components/takenote/Takenote";
-import service from "../../services/notesService";
 import "./notes.scss";
+import service from "../../services/notesService";
+
 
 function Notes() {
   const [notesArr, setNotesArr] = useState([]);
@@ -19,7 +20,6 @@ function Notes() {
       .then((result) => {
         //2.set current state
         setNotesArr(result.data.data);
-        //console.log(result.data.data);
         console.log("Notes Fetched", result);
       })
       .catch((err) => {

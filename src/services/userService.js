@@ -2,7 +2,13 @@ import AxiosService from "./axiosService";
 
 const service = new AxiosService();
 
-let baseUrl = 'http://localhost:9000/';
+let baseUrl = "http://localhost:9000/";
+
+const header = {
+  headers: {
+    token: localStorage.getItem("token"),
+  },
+};
 
 class UserService {
   registration(data) {
@@ -15,6 +21,10 @@ class UserService {
 
   forgotpassword(data) {
     return service.postMethod(`${baseUrl}users/forgotpassword`, data);
+  }
+
+  resetpassword(data) {
+    return service.putMethod(`${baseUrl}users/resetpassword`, data, header);
   }
 }
 

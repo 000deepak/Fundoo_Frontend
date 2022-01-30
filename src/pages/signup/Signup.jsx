@@ -63,10 +63,10 @@ export class Signup extends Component {
     } else {
       console.log("Validation completed");
       let data = {
-        "fName": this.state.first_name,
-        "lName": this.state.last_name,
-        "email": this.state.email,
-        "password": this.state.password,
+        fName: this.state.first_name,
+        lName: this.state.last_name,
+        email: this.state.email,
+        password: this.state.password,
       };
 
       service
@@ -82,131 +82,133 @@ export class Signup extends Component {
 
   render() {
     return (
-      <div className="main-body">
-        {/* left body */}
-        <div className="left-body">
-          <div className="fundoo-s">
-            <p style={{ color: "blue" }}>F</p>
-            <p style={{ color: "red" }}>u</p>
-            <p style={{ color: "yellow" }}>n</p>
-            <p style={{ color: "blue" }}>d</p>
-            <p style={{ color: "green" }}>o</p>
-            <p style={{ color: "red" }}>o</p>
-          </div>
-          <div className="create">Create Your Fundoo Account</div>
+      <div className="main-page">
+        <div className="main-body">
+          {/* left body */}
+          <div className="left-body">
+            <div className="fundoo-s">
+              <p style={{ color: "blue" }}>F</p>
+              <p style={{ color: "red" }}>u</p>
+              <p style={{ color: "yellow" }}>n</p>
+              <p style={{ color: "blue" }}>d</p>
+              <p style={{ color: "green" }}>o</p>
+              <p style={{ color: "red" }}>o</p>
+            </div>
+            <div className="create">Create Your Fundoo Account</div>
 
-          {/* form */}
-          <div className="form-s">
-            <div className="name-data">
-              <div className="name">
+            {/* form */}
+            <div className="form-s">
+              <div className="name-data">
+                <div className="name">
+                  <TextField
+                    name="first_name"
+                    id="outlined-basic"
+                    label="First Name"
+                    type="text"
+                    variant="outlined"
+                    autoFocus={true}
+                    fullWidth
+                    size="small"
+                    error={this.state.first_nameError}
+                    helperText={this.state.first_nameError ? "First Name required" : " "}
+                    onChange={(e) => this.changeHandle(e)}
+                  />
+                </div>
+                <div className="name">
+                  <TextField
+                    name="last_name"
+                    id="outlined-basic"
+                    label="Last Name"
+                    type="text"
+                    variant="outlined"
+                    size="small"
+                    fullWidth
+                    error={this.state.last_nameError}
+                    helperText={this.state.last_nameError ? "Last Name required" : " "}
+                    onChange={(e) => this.changeHandle(e)}
+                  />
+                </div>
+              </div>
+              <div className="email-data">
                 <TextField
-                  name="first_name"
+                  name="email"
                   id="outlined-basic"
-                  label="First Name"
+                  label="Email"
+                  size="small"
                   type="text"
                   variant="outlined"
-                  autoFocus={true}
+                  helperText="You can use letters,numbers and periods"
                   fullWidth
-                  size="small"
-                  error={this.state.first_nameError}
-                  helperText={this.state.first_nameError ? "First Name required" : " "}
+                  error={this.state.emailError}
+                  helperText={
+                    this.state.emailError
+                      ? "email required"
+                      : "You can use letters,numbers and periods"
+                  }
                   onChange={(e) => this.changeHandle(e)}
                 />
               </div>
-              <div className="name">
-                <TextField
-                  name="last_name"
-                  id="outlined-basic"
-                  label="Last Name"
-                  type="text"
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  error={this.state.last_nameError}
-                  helperText={this.state.last_nameError ? "Last Name required" : " "}
-                  onChange={(e) => this.changeHandle(e)}
-                />
+              <div className="use_email">use my current email id instead</div>
+              <div className="pass-data">
+                <div className="password">
+                  <TextField
+                    name="password"
+                    id="outlined-basic"
+                    label="Password"
+                    type="password"
+                    // helperText="Use 8 or more characters with a mix of letters, numbers & symbols"
+                    variant="outlined"
+                    size="small"
+                    fullWidth
+                    error={this.state.passwordError}
+                    helperText={this.state.passwordError ? "Password required" : " "}
+                    onChange={(e) => this.changeHandle(e)}
+                  />
+                </div>
+                <div className="password">
+                  <TextField
+                    name="confirmPassword"
+                    id="outlined-basic"
+                    label="Confirm Password"
+                    type="password"
+                    variant="outlined"
+                    size="small"
+                    fullWidth
+                    error={this.state.confirmPasswordError}
+                    helperText={this.state.confirmPasswordError ? "Confirm your password" : " "}
+                    onChange={(e) => this.changeHandle(e)}
+                  />
+                </div>
+              </div>
+              {/* <div className="pass-suggest">Use 8 or more characters with a mix of letters, numbers & symbols</div> */}
+            </div>
+
+            {/* button */}
+            <div className="next-s">
+              <div className="sign-instead">
+                <p>Sign in instead</p>
+              </div>
+              <div className="button-s">
+                <Button variant="contained" onClick={this.next}>
+                  Next
+                </Button>
               </div>
             </div>
-            <div className="email-data">
-              <TextField
-                name="email"
-                id="outlined-basic"
-                label="Email"
-                size="small"
-                type="text"
-                variant="outlined"
-                helperText="You can use letters,numbers and periods"
-                fullWidth
-                error={this.state.emailError}
-                helperText={
-                  this.state.emailError
-                    ? "email required"
-                    : "You can use letters,numbers and periods"
-                }
-                onChange={(e) => this.changeHandle(e)}
+          </div>
+
+          {/* right body */}
+          <div className="right-body-s">
+            <figure class="image">
+              <img
+                src="https://ssl.gstatic.com/accounts/signup/glif/account.svg"
+                alt=""
+                width="244"
+                height="244"
+                class="j9NuTc TrZEUc"
               />
-            </div>
-            <div className="use_email">use my current email id instead</div>
-            <div className="pass-data">
-              <div className="password">
-                <TextField
-                  name="password"
-                  id="outlined-basic"
-                  label="Password"
-                  type="password"
-                  // helperText="Use 8 or more characters with a mix of letters, numbers & symbols"
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  error={this.state.passwordError}
-                  helperText={this.state.passwordError ? "Password required" : " "}
-                  onChange={(e) => this.changeHandle(e)}
-                />
-              </div>
-              <div className="password">
-                <TextField
-                  name="confirmPassword"
-                  id="outlined-basic"
-                  label="Confirm Password"
-                  type="password"
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  error={this.state.confirmPasswordError}
-                  helperText={this.state.confirmPasswordError ? "Confirm your password" : " "}
-                  onChange={(e) => this.changeHandle(e)}
-                />
-              </div>
-            </div>
-            {/* <div className="pass-suggest">Use 8 or more characters with a mix of letters, numbers & symbols</div> */}
+              <figcaption>One account. All of Google working for you.</figcaption>
+            </figure>
           </div>
-
-          {/* button */}
-          <div className="next-s">
-            <div className="sign-instead">
-              <p>Sign in instead</p>
-            </div>
-            <div className="button-s">
-              <Button variant="contained" onClick={this.next}>
-                Next
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        {/* right body */}
-        <div className="right-body-s">
-          <figure class="image">
-            <img
-              src="https://ssl.gstatic.com/accounts/signup/glif/account.svg"
-              alt=""
-              width="244"
-              height="244"
-              class="j9NuTc TrZEUc"
-            />
-            <figcaption>One account. All of Google working for you.</figcaption>
-          </figure>
         </div>
       </div>
     );

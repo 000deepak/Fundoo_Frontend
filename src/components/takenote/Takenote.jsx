@@ -17,23 +17,20 @@ function Takenote(props) {
 
   //setting current colour data,passed in Icon
   const handleColour = (hex) => {
-    console.log("take a note",hex);
     setColour(hex);
+    console.log("take a note", hex);
   };
 
   //setting current archive data,passed in Icon
   const handleArchive = () => {
     setArchive(true);
-    console.log("take a note",archive);
+    console.log("take a note", archive);
   };
-  console.log(archive);
 
   //setting current data
   const [data, setData] = useState({
     title: "",
     description: "",
-    // colour: colour,
-    // isArchived: archive,
     isDeleted: false,
   });
 
@@ -45,7 +42,6 @@ function Takenote(props) {
 
   //when close is clicked
   const close = () => {
-    //console.log(data);
     let notedata = {
       title: data.title,
       description: data.description,
@@ -71,7 +67,7 @@ function Takenote(props) {
   };
 
   return (
-    <div /* onClick={() => setClose(false)} */>
+    <div >
       {closed ? (
         <div className="newfirst" onClick={() => setClosed(false)}>
           <div className="newnote">Take A Note...</div>
@@ -90,7 +86,6 @@ function Takenote(props) {
       ) : (
         <div className="newsecond" style={{ backgroundcolour: colour }}>
           <div>
-            {" "}
             <TextareaAutosize
               name="title"
               placeholder="Title"
@@ -101,7 +96,6 @@ function Takenote(props) {
             ></TextareaAutosize>
           </div>
           <div>
-            {" "}
             <TextareaAutosize
               name="description"
               placeholder="Take A Note..."

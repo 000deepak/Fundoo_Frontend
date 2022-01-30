@@ -1,38 +1,39 @@
-// html {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
-
+.main-page {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .main-body {
   border-radius: 0.8rem;
-  border: 0.1rem solid #dadce0;
-  height: 60rem;
-  width: 70rem;
+  border: 0.001rem solid #dadce0;
+  height: 85vh;
+  width: 50vw;
   display: flex;
 
   .fundoo-s {
     display: flex;
     direction: ltr;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     line-height: 1.4286;
     color: #202124;
     font-family: roboto, "Noto Sans Myanmar UI", arial, sans-serif;
   }
 
   .create {
-    padding: 0px 0px 1.5rem 0px;
+    padding: 0px 0px 1rem 0px;
     color: #202124;
-    font-size: 2.4rem;
+    font-size: 1.5rem;
     font-weight: 400;
     line-height: 1.3333;
   }
 
   .left-body {
-    width: 90rem;
-    height: 60rem;
+    width: 70vw;
+    height: 40vh;
     display: flex;
-    padding: 2.5rem;
+    padding: 2rem;
 
     display: flex;
     flex-direction: column;
@@ -49,11 +50,11 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
-        height: 5rem;
+        height: 3rem;
       }
 
       .name-data {
-        padding-bottom: 1.5rem;
+        padding-bottom: 2rem;
       }
       .email-data {
         width: 100%;
@@ -61,21 +62,21 @@
       .name,
       .password {
         width: 48%;
-        padding-bottom: 0rem;
+        padding-bottom: 2rem;
       }
 
       .MuiFormHelperText-root {
-        font-size: 1rem;
+        font-size: 0.8rem;
       }
 
       .MuiFormLabel-root {
-        font-size: 1.5rem;
+        font-size: 1rem;
       }
       .use_email {
         font-weight: 600;
         padding: 0rem 0rem 1.5rem 0rem;
         color: #1a73e8;
-        font-size: 1.5rem;
+        font-size: 1rem;
       }
     }
   }
@@ -91,19 +92,19 @@
       // font-weight: bold;
       font-weight: 600;
       color: #1a73e8;
-      font-size: 1.5rem;
+      font-size: 1rem;
     }
 
     .css-sghohy-MuiButtonBase-root-MuiButton-root {
-      min-width: 6.8rem;
-      min-height: 2.8rem;
-      font-size: 1rem;
+      min-width: 4rem;
+      min-height: 2rem;
+      font-size: 0.8rem;
     }
 
     .pass-suggest {
       color: rgba(0, 0, 0, 0.54);
       margin: 0;
-      font-size: 0.75rem;
+      font-size: 0.5rem;
       margin-top: 3px;
       text-align: left;
       font-family: "Roboto", "Helvetica", "Arial", sans-serif;
@@ -116,7 +117,7 @@
   .right-body-s {
     width: 40%;
     height: 100%;
-    font-size: 1.5rem;
+    font-size: 1rem;
 
     display: flex;
     align-items: center;
@@ -126,9 +127,6 @@
 
 //when size goes below this font size changes to 55%
 @media (max-width: 998px) {
-  html {
-    font-size: 55%;
-  }
 }
 
 @media (max-width: 768px) {
@@ -138,9 +136,6 @@
 }
 
 @media (max-width: 430px) {
-  html {
-    font-size: 30%;
-  }
   .right-body-s {
     display: none !important;
   }

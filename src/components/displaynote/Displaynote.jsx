@@ -6,7 +6,6 @@ import "./Displaynote.scss";
 
 function Displaynote(props) {
   return props.notesArr.map((item, index) => {
-    //console.log("display",props);
     return (
       <div className="mainContainer">
         <div className="subContainer">

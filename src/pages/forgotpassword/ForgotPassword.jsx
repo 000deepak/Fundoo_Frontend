@@ -44,7 +44,7 @@ export class Signin extends Component {
     } else {
       console.log("Validation completed");
       let data = {
-        "email": this.state.email,
+        email: this.state.email,
       };
 
       service
@@ -59,46 +59,48 @@ export class Signin extends Component {
   };
   render() {
     return (
-      <div className="forget-main">
-        {/* main body */}
-        <div className="forget-sub">
-          <div className="fundoo-f">
-            <p style={{ color: "blue" }}>F</p>
-            <p style={{ color: "red" }}>u</p>
-            <p style={{ color: "yellow" }}>n</p>
-            <p style={{ color: "blue" }}>d</p>
-            <p style={{ color: "green" }}>o</p>
-            <p style={{ color: "red" }}>o</p>
-          </div>
+      <div className="main-page">
+        <div className="forget-main">
+          {/* main body */}
+          <div className="forget-sub">
+            <div className="fundoo-f">
+              <p style={{ color: "blue" }}>F</p>
+              <p style={{ color: "red" }}>u</p>
+              <p style={{ color: "yellow" }}>n</p>
+              <p style={{ color: "blue" }}>d</p>
+              <p style={{ color: "green" }}>o</p>
+              <p style={{ color: "red" }}>o</p>
+            </div>
 
-          <p className="title-f">Account Recovery</p>
+            <p className="title-f">Account Recovery</p>
 
-          <div className="form-f">
-            <p className="rec-f">To continue, first verify it’s you</p>
+            <div className="form-f">
+              <p className="rec-f">To continue, first verify it’s you</p>
 
-            <div className="email-f">
-              <TextField
-                name="email"
-                id="outlined-basic"
-                label="Email "
-                variant="outlined"
-                fullWidth
-                helperText="Enter your registered email"
-                error={this.state.emailError}
-                helperText={this.state.emailError ? "email required" : " "}
-                onChange={(e) => this.changeHandle(e)}
-              />
+              <div className="email-f">
+                <TextField
+                  name="email"
+                  id="outlined-basic"
+                  label="Email "
+                  variant="outlined"
+                  fullWidth
+                  helperText="Enter your registered email"
+                  error={this.state.emailError}
+                  helperText={this.state.emailError ? "email required" : " "}
+                  onChange={(e) => this.changeHandle(e)}
+                />
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* bottom */}
-        <div className="next-f">
-          <p className="blue-f">Create account</p>
-          <div className="button-f">
-            <Button variant="contained" onClick={this.next}>
-              Next
-            </Button>
+          {/* bottom */}
+          <div className="next-f">
+            <p className="blue-f">Create account</p>
+            <div className="button-f">
+              <Button variant="contained" onClick={this.next}>
+                Next
+              </Button>
+            </div>
           </div>
         </div>
       </div>

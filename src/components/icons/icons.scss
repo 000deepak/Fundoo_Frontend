@@ -4,11 +4,33 @@
   width: 100%;
 }
 
+@mixin pallete {
+  width: 30px;
+  height: 30px;
+  border-radius: 80%;
+}
+.popper{
+  display:flex;
+  justify-content: space-between;
+  
+  .icon-pop{
+      @include pallete();
+  }
+
+}
+
 @mixin color {
   width: 30px;
   height: 30px;
   border-radius: 80%;
 }
+
+.icons{
+  display: flex;
+  justify-content: space-around;
+  width:100%
+}
+
 .icon-popover{
   display:flex;
   justify-content: space-between;

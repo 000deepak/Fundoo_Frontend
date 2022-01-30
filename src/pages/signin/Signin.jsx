@@ -50,15 +50,15 @@ export class Signin extends Component {
     } else {
       console.log("Validation completed");
       let data = {
-        "email": this.state.email,
-        "password": this.state.password,
+        email: this.state.email,
+        password: this.state.password,
       };
 
       service
         .signin(data)
         .then((res) => {
           console.log(res);
-          localStorage.setItem('token', res.data.data.token)
+          localStorage.setItem("token", res.data.data.token);
         })
         .catch((err) => {
           console.log(err);
@@ -68,66 +68,68 @@ export class Signin extends Component {
 
   render() {
     return (
-      <div className="login-main">
-        <div className="login-sub">
-          <div className="fundoo-l">
-            <p style={{ color: "blue" }}>F</p>
-            <p style={{ color: "red" }}>u</p>
-            <p style={{ color: "yellow" }}>n</p>
-            <p style={{ color: "blue" }}>d</p>
-            <p style={{ color: "green" }}>o</p>
-            <p style={{ color: "red" }}>o</p>
-          </div>
-
-          <p className="sign-in">Sign In</p>
-
-          <p className="use-l">Use Your Fundoo Account</p>
-
-          <div className="form-l">
-            <div className="email-l">
-              <TextField
-                name="email"
-                id="outlined-basic"
-                label="Your Email "
-                variant="outlined"
-                fullWidth
-                error={this.state.emailError}
-                helperText={this.state.emailError ? "email required" : " "}
-                onChange={(e) => this.changeHandle(e)}
-              />
+      <div className="main-page">
+        <div className="login-main">
+          <div className="login-sub">
+            <div className="fundoo-l">
+              <p style={{ color: "blue" }}>F</p>
+              <p style={{ color: "red" }}>u</p>
+              <p style={{ color: "yellow" }}>n</p>
+              <p style={{ color: "blue" }}>d</p>
+              <p style={{ color: "green" }}>o</p>
+              <p style={{ color: "red" }}>o</p>
             </div>
 
-            <div className="blue-l">Forgot Email?</div>
+            <p className="sign-in">Sign In</p>
 
-            <div className="password-l">
-              <TextField
-                name="password"
-                id="outlined-basic"
-                label="Your Password "
-                variant="outlined"
-                type="password"
-                fullWidth
-                helperText=" "
-                error={this.state.passwordError}
-                helperText={this.state.passwordError ? "Password required" : " "}
-                onChange={(e) => this.changeHandle(e)}
-              />
+            <p className="use-l">Use Your Fundoo Account</p>
+
+            <div className="form-l">
+              <div className="email-l">
+                <TextField
+                  name="email"
+                  id="outlined-basic"
+                  label="Your Email "
+                  variant="outlined"
+                  fullWidth
+                  error={this.state.emailError}
+                  helperText={this.state.emailError ? "email required" : " "}
+                  onChange={(e) => this.changeHandle(e)}
+                />
+              </div>
+
+              <div className="blue-l">Forgot Email?</div>
+
+              <div className="password-l">
+                <TextField
+                  name="password"
+                  id="outlined-basic"
+                  label="Your Password "
+                  variant="outlined"
+                  type="password"
+                  fullWidth
+                  helperText=" "
+                  error={this.state.passwordError}
+                  helperText={this.state.passwordError ? "Password required" : " "}
+                  onChange={(e) => this.changeHandle(e)}
+                />
+              </div>
+
+              <div className="blue-l">Forgot Password?</div>
             </div>
 
-            <div className="blue-l">Forgot Password?</div>
+            <div className="guest-l">
+              Not your computer? Use Guest mode to sign in privately.
+              <a className="blue-l">Learn more </a>
+            </div>
           </div>
-
-          <div className="guest-l">
-            Not your computer? Use Guest mode to sign in privately.
-            <a className="blue-l">Learn more </a>
-          </div>
-        </div>
-        <div className="create-l">
-          <p className="blue-l">Create Account</p>
-          <div className="button-l">
-            <Button variant="contained" onClick={this.next}>
-              Next
-            </Button>
+          <div className="create-l">
+            <p className="blue-l">Create Account</p>
+            <div className="button-l">
+              <Button variant="contained" onClick={this.next}>
+                Next
+              </Button>
+            </div>
           </div>
         </div>
       </div>
