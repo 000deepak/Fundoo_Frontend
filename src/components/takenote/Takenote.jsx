@@ -12,7 +12,7 @@ import "./takenote.scss";
 
 function Takenote(props) {
   const [closed, setClosed] = useState(true);
-  const [colour, setColour] = useState("#e0e0e0");
+  const [colour, setColour] = useState(null);
   const [archive, setArchive] = useState(false);
 
   //setting current colour data,passed in Icon

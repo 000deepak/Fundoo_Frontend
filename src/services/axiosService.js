@@ -12,6 +12,10 @@ class AxiosService {
     putMethod(url, data, headers = false) {
         return axios.put(url, data, headers)
     }
+
+    deleteMethod(url, data, headers = false) {
+        return axios.delete(url, data, headers)
+    }
 }
 
 export default AxiosService

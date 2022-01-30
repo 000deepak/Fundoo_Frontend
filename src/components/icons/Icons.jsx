@@ -53,9 +53,17 @@ function Icons(props) {
       props.handleColour(hex);
       console.log("create", hex);
     } else {
-      console.log("update", hex);
+  
+      console.log("updating colour to ",hex);
+      console.log(props.note.colour);
 
-      // updateNotes(data);
+      props.note.colour = hex;
+
+      props.note.noteId = props.note._id;
+
+      console.log(props.note);
+
+      updateNotes(props.note);
     }
   };
   //------------------------------------------------Colour(END)
@@ -82,7 +90,7 @@ function Icons(props) {
 
   const [more, setMore] = useState(false);
 
-  let More = ["Delete note"];
+  let More = ["Delete note", "More"];
 
   const handleOpenMore = (e) => {
     setMore(e.currentTarget);
@@ -90,23 +98,20 @@ function Icons(props) {
 
   //close more
   const handleCloseMore = () => {
-    setMore({
-      more: false,
-    });
+    setMore(false);
   };
 
   const handleMore = () => {
     console.log("More Delete");
-    // delete-part
 
-    // noteService.deleteNote(data)
-    // .then(res =>{
-    //     console.log(res)
-    //     this.props.updateNote()
-    // })
-    // .catch(err =>{
-    //     console.log( "U have an Error ->" + err)
-    // })
+    service
+      .deletenotes(props.note._id)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log("Error in Deleting Notes" + err);
+      });
   };
 
   //------------------------------------------------More(END)
@@ -119,9 +124,7 @@ function Icons(props) {
       //1.update notes
       .updatenotes(data)
       .then((result) => {
-        //2.set current state
-        // setNotesArr(result.data.data);
-        //props.getnote();
+        // props.getnote();
         console.log("Notes Updated", result);
       })
       .catch((err) => {
@@ -160,7 +163,12 @@ function Icons(props) {
       <div>
         {/* More */}
         <IconButton>
-          <MoreVertOutlinedIcon onClick={handleOpenMore} />
+          <MoreVertOutlinedIcon
+            htmlColor="grey"
+            variant="contained"
+            aria-describedby={id}
+            onClick={handleOpenMore}
+          />
           <Popover
             id="simple-menu"
             anchorEl={more}
@@ -172,7 +180,7 @@ function Icons(props) {
               horizontal: "left",
             }}
           >
-            {More.map((more, index) => (
+            {More.map((more) => (
               <MenuItem onClick={() => handleMore(more)}>{more}</MenuItem>
             ))}
           </Popover>
@@ -200,14 +208,12 @@ function Icons(props) {
           >
             <Typography sx={{ p: 1 }}>
               <div className="icon-popover">
-                {hexColour.map((hex) => {
-                  return (
-                    <div
-                      className="icon-pop"
-                      style={{ backgroundColor: hex }} /* onClick={changeColour()} */
-                    ></div>
-                  );
-                })}
+                {hexColour.map((hex) => (
+                  <div
+                    className="icon-pop"
+                    style={{ backgroundColor: hex }} onClick={()=>changeColour(hex)}
+                  ></div>
+                ))}
               </div>
             </Typography>
           </Popover>

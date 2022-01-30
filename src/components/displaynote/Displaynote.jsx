@@ -12,7 +12,7 @@ function Displaynote(props) {
           <div className="title">{item.title}</div>
           <div className="notes"> {item.description}</div>
           <div className="icons" >
-            <Icons mode="update" note={item} /* getnote={props.getnote}  */ />
+            <Icons mode="update" note={item} /* getnote={props.getnote}  */  />
           </div>
         </div>
       </div>

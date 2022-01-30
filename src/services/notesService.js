@@ -14,11 +14,14 @@ const NotesService = {
   addnotes: (data) => {
     return service.postMethod(`${url}/notes/addnotes`, data, header);
   },
-  getnotes: (data) => {
+  getnotes: () => {
     return service.getMethod(`${url}/notes/notes`, header);
   },
   updatenotes: (data) => {
     return service.putMethod(`${url}/notes/update`, data, header);
+  },
+  deletenotes: (data) => {
+    return service.deleteMethod(`${url}/notes/delete`, data, header);
   },
 };
 
