@@ -21,7 +21,8 @@ const NotesService = {
     return service.putMethod(`${url}/notes/update`, data, header);
   },
   deletenotes: (data) => {
-    return service.deleteMethod(`${url}/notes/delete`, data, header);
+    console.log(header,data);
+    return service.deleteMethod(`${url}/notes/delete`,{ data, header});
   },
 };
 

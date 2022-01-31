@@ -10,6 +10,14 @@ import { Input } from "@mui/material";
 import service from "../../services/notesService";
 import "./takenote.scss";
 
+const initialNote = {
+  title: "",
+  description: "",
+  colour: null,
+  isArchived: false,
+  isDeleted: false,
+};
+
 function Takenote(props) {
   const [closed, setClosed] = useState(true);
   const [colour, setColour] = useState(null);
@@ -28,16 +36,13 @@ function Takenote(props) {
   };
 
   //setting current data
-  const [data, setData] = useState({
-    title: "",
-    description: "",
-    isDeleted: false,
-  });
+  const [data, setData] = useState(initialNote);
 
   const changedata = (e) => {
-    setData((previousstate) => {
-      return { ...previousstate, [e.target.name]: e.target.value };
-    });
+    setData((previousstate) => ({
+      ...previousstate,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   //when close is clicked
@@ -53,21 +58,24 @@ function Takenote(props) {
     //1.set current data
     setClosed(true);
 
-    //2.send add note request
-    service
-      .addnotes(notedata)
-      .then((result) => {
-        //3.get notes
-        props.getnote();
-        console.log("Notes Saved", result);
-      })
-      .catch((err) => {
-        console.log("Error In Saving Data", err);
-      });
+    if (data.title) {
+      //2.send add note request
+      service
+        .addnotes(notedata)
+        .then((result) => {
+          //3.get notes(refresh display)
+          props.getnote();
+          setData({ ...initialNote });
+          console.log("Notes Saved", result);
+        })
+        .catch((err) => {
+          console.log("Error In Saving Data", err);
+        });
+    }
   };
 
   return (
-    <div >
+    <div>
       {closed ? (
         <div className="newfirst" onClick={() => setClosed(false)}>
           <div className="newnote">Take A Note...</div>
@@ -84,12 +92,13 @@ function Takenote(props) {
           </div>
         </div>
       ) : (
-        <div className="newsecond" style={{ backgroundcolour: colour }}>
+        <div className="newsecond" style={{ backgroundColor: colour }}>
           <div>
             <TextareaAutosize
               name="title"
               placeholder="Title"
               className="text-area"
+              style={{ backgroundColor: colour }}
               rows="1"
               cols="50"
               onChange={(e) => changedata(e)}
@@ -100,6 +109,7 @@ function Takenote(props) {
               name="description"
               placeholder="Take A Note..."
               className="text-area"
+              style={{ backgroundColor: colour }}
               rows="10"
               cols="50"
               onChange={(e) => changedata(e)}
@@ -107,14 +117,18 @@ function Takenote(props) {
           </div>
 
           {/* handle archive and colour */}
-          <div className="newbutton">
+          <div className="bottom">
             <Icons
               className="icons-set"
               mode="create"
               handleColour={handleColour}
               handleArchive={handleArchive}
             />
-            <button className="closebutton" onClick={() => close()}>
+            <button
+              className="closebutton"
+              onClick={() => close()}
+              style={{ backgroundColor: colour }}
+            >
               close
             </button>
           </div>

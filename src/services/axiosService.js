@@ -14,7 +14,10 @@ class AxiosService {
     }
 
     deleteMethod(url, data, headers = false) {
-        return axios.delete(url, data, headers)
+        console.log(headers,data,"axios");
+        // return axios.delete(url,headers,data)
+        // return axios.delete(url, headers, {data: data})
+        return axios.delete(url,data,headers)
     }
 }
 

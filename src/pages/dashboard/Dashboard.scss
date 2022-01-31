@@ -1,25 +1,36 @@
-
 .mainHeader {
   display: flex;
-  margin: 2vh 0vw 0vh 0vw;
+  align-items: center;
+  padding-bottom: .5rem;
 }
 
-.search {
+.searchBar {
+  display: flex;
   font-size: 16px;
-  height: 1cm;
-  width: 25cm;
+  height: 3rem;
+  width: 50vw;
   margin: 0vh 0vw 0vh 5vw;
   border: none;
-  border-radius: 0.8rem;
+  border-radius: 0.5rem;
   outline: none;
-  background-color: lightgrey;
+  background-color: #f1f3f4;
+  .search {
+    width: 100%;
+    font-size: 18px;
+    border-radius: 0.5rem;
+    border: none;
+    outline: none;
+    background-color: #f1f3f4;
+  }
+  .mag {
+    padding: 0rem 1rem 0rem 1rem;
+  }
 }
 
-.headBar {
-  justify-content: space-evenly;
-  padding-bottom: 0rem;
+.icon-list {
   .headerIcon {
-    padding-bottom: 0rem;
+    padding-left: 5rem;
+    width: 25vw;
     display: flex;
     font-size: 0rem;
     color: #777777;
@@ -27,8 +38,21 @@
   }
 }
 
-.fundoologo{
-    margin-top: -0.5rem;
-//   height:4px;
-//   width: 4px;
+.fundoologo {
+  margin-top: 0.4rem;
+}
+
+.css-19z1ozs-MuiPaper-root-MuiAppBar-root {
+  color: #000000de !important ;
+  background-color: white !important  ;
+  box-shadow: none !important;
+  border: 0.01rem solid #dadce0 !important ;
+  border-width: 1px 1px 1px 1px !important;
+}
+.css-1t29gy6-MuiToolbar-root {
+  color: #000000de !important ;
+  background-color: white !important  ;
+  box-shadow: none !important;
+  border: 0.01rem solid #dadce0 !important ;
+  border-width: 1px 1px 1px 1px !important;
 }

@@ -1,4 +1,6 @@
 .mainContainer {
+  margin-top: 2.5rem;
+  
   .subContainer {
     background-color: #fff;
     border-color: #e0e0e0;
@@ -10,6 +12,7 @@
     flex-direction: column;
     justify-content: space-around;
     padding-left: 0.5rem;
+    margin-top: 1.5rem;
 
     .title {
       width: 4rem;
@@ -19,6 +22,44 @@
       width: 100%;
       padding-left: 0.8rem;
     }
-    margin-top: 2.5rem;
+   
   }
+}
+
+.dialog-display{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30vw;
+  height: 30vh;
+  padding: 1rem 1.6rem 1.2rem 1.6rem;
+  font-family: Roboto, Arial, sans-serif;
+  font-weight: 300;
+  border-radius: 8px;
+  box-shadow: 0 10px 10px #00000033;
+  background-color: #fff;
+  border-color: #e0e0e0;
+  
+
+  .text-area {
+    width: 100%;
+    border: none;
+    outline: none;
+  }
+
+  .bottom {
+    display: flex;
+    .icons-set {
+      width: 80%;
+    }
+    .closebutton {
+      background-color: white;
+      border: none;
+      color: #636161;
+      font-size: 1rem;
+    }
+  }
+}
+.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+  border-radius: 2rem !important;
 }

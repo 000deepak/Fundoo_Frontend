@@ -25,6 +25,7 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
+import SearchIcon from "@mui/icons-material/Search";
 
 import "../dashboard/Dashboard.scss";
 import Notes from "../notes/Notes";
@@ -153,10 +154,13 @@ export default function MiniDrawer() {
             </Typography>
 
             <div className="searchBar">
+              <IconButton className="mag">
+                <SearchIcon />
+              </IconButton>
               <input className="search" type="text" placeholder="Search"></input>
             </div>
 
-            <div className="headBar">
+            <div className="icon-list">
               <ul className="headerIcon">
                 <IconButton>
                   {" "}
@@ -183,9 +187,9 @@ export default function MiniDrawer() {
           </div>
         </Toolbar>
       </AppBar>
+
       <Drawer variant="permanent" open={open}>
         <DrawerHeader></DrawerHeader>
-
         <List>
           {iconlist.map((text, index) => (
             <ListItem button key={text.iText}>
