@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import "../resetpassword/ResetPassword.scss";
-import { TextField } from "@material-ui/core";
-import Button from "@mui/material/Button";
-import UserService from "../../services/userService";
+import React, { Component } from 'react';
+import '../resetpassword/ResetPassword.scss';
+import { TextField } from '@material-ui/core';
+import Button from '@mui/material/Button';
+import UserService from '../../services/userService';
 const service = new UserService();
 
 export class Signin extends Component {
@@ -10,17 +10,17 @@ export class Signin extends Component {
     super(props);
 
     this.state = {
-      password: "",
-      confirmPassword: "",
+      password: '',
+      confirmPassword: '',
       passwordError: false,
-      confirmPasswordError: false,
+      confirmPasswordError: false
     };
   }
 
   changeHandle = (e) => {
     console.log(e.target.value);
     this.setState({
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -28,11 +28,11 @@ export class Signin extends Component {
     let isError = false; //default is without error
     const error = this.state;
 
-    error.passwordError = this.state.password === "" ? true : false;
-    error.confirmPasswordError = this.state.confirmPassword === "" ? true : false;
+    error.passwordError = this.state.password === '' ? true : false;
+    error.confirmPasswordError = this.state.confirmPassword === '' ? true : false;
 
     this.setState({
-      ...error,
+      ...error
     });
 
     // returns boolean
@@ -40,18 +40,28 @@ export class Signin extends Component {
   };
 
   next = () => {
+    let url = window.location.href;
+ 
+    let token = url.substring(36);
+  
+    const header = {
+      headers: {
+        token: token
+      },
+    };
+
     var validated = this.validation();
     if (validated) {
-      console.log("Something Missing");
+      console.log('Something Missing');
     } else {
-      console.log("Validation completed");
+      console.log('Validation completed');
       if (this.state.password == this.state.confirmPassword) {
         let data = {
-          confirmPassword: this.state.confirmPassword,
+          confirmPassword: this.state.confirmPassword
         };
 
         service
-          .resetpassword(data)
+          .resetpassword(data,header)
           .then((res) => {
             console.log(res);
           })
@@ -68,12 +78,12 @@ export class Signin extends Component {
         <div className="reset-main">
           <div className="reset-sub">
             <div className="fundoo-r">
-              <p style={{ color: "blue" }}>F</p>
-              <p style={{ color: "red" }}>u</p>
-              <p style={{ color: "yellow" }}>n</p>
-              <p style={{ color: "blue" }}>d</p>
-              <p style={{ color: "green" }}>o</p>
-              <p style={{ color: "red" }}>o</p>
+              <p style={{ color: 'blue' }}>F</p>
+              <p style={{ color: 'red' }}>u</p>
+              <p style={{ color: 'yellow' }}>n</p>
+              <p style={{ color: 'blue' }}>d</p>
+              <p style={{ color: 'green' }}>o</p>
+              <p style={{ color: 'red' }}>o</p>
             </div>
 
             <p className="title-r">Change Password</p>
@@ -81,9 +91,7 @@ export class Signin extends Component {
             <div className="form-r">
               <p className="rec1">Create a strong password</p>
 
-              <p className="rec2">
-                Create a new strong password that you dont use for other websites
-              </p>
+              <p className="rec2">Create a new strong password that you dont use for other websites</p>
 
               <div className="new-r">
                 <TextField
@@ -93,7 +101,7 @@ export class Signin extends Component {
                   variant="outlined"
                   fullWidth
                   error={this.state.passwordError}
-                  helperText={this.state.passwordError ? "Password required" : " "}
+                  helperText={this.state.passwordError ? 'Password required' : ' '}
                   onChange={(e) => this.changeHandle(e)}
                 />
               </div>
@@ -107,7 +115,7 @@ export class Signin extends Component {
                   fullWidth
                   helperText="Atleast 8 characters"
                   error={this.state.confirmPasswordError}
-                  helperText={this.state.confirmPasswordError ? "Confirm your password" : " "}
+                  helperText={this.state.confirmPasswordError ? 'Confirm your password' : ' '}
                   onChange={(e) => this.changeHandle(e)}
                 />
               </div>

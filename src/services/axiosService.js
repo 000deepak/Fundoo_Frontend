@@ -19,6 +19,12 @@ class AxiosService {
         // return axios.delete(url, headers, {data: data})
         return axios.delete(url,data,headers)
     }
+
+    
+    patchMethod(url, data, headers = false) {
+        console.log(headers,data,"reset axios");
+        return axios.patch(url, data, headers)
+    }
 }
 
 export default AxiosService

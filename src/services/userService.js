@@ -23,8 +23,8 @@ class UserService {
     return service.postMethod(`${baseUrl}users/forgotpassword`, data);
   }
 
-  resetpassword(data) {
-    return service.putMethod(`${baseUrl}users/resetpassword`, data, header);
+  resetpassword(data,header) {
+    return service.patchMethod(`${baseUrl}users/resetpassword`, data, header);
   }
 }
 

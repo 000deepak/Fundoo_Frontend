@@ -3,7 +3,10 @@ import "../signin/signin.scss";
 import { TextField } from "@material-ui/core";
 import Button from "@mui/material/Button";
 import UserService from "../../services/userService";
+import {Link} from 'react-router-dom';
+import {withRouter} from 'react-router';
 const service = new UserService();
+
 
 export class Signin extends Component {
   constructor(props) {
@@ -59,6 +62,8 @@ export class Signin extends Component {
         .then((res) => {
           console.log(res);
           localStorage.setItem("token", res.data.data.token);
+          this.props.history.push("/dashboard");
+          
         })
         .catch((err) => {
           console.log(err);
