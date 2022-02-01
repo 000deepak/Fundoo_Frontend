@@ -3,8 +3,10 @@ import '../signin/signin.scss';
 import { TextField } from '@material-ui/core';
 import Button from '@mui/material/Button';
 import UserService from '../../services/userService';
-import customHistory from '../../components/history/history'
+// import customHistory from '../../components/history/history'
 import auth from '../../components/auth/auth'
+import history from 'history';
+
 
 const service = new UserService();
 
@@ -52,7 +54,7 @@ export class Signin extends Component {
       // navigate('dashboard');
       // this.props.customHistory.push('/dashboard');
       auth.login(() => {
-        this.props.customHistory.push("/dashboard");
+        this.props.history.push("/dashboard");
       });
       console.log('Something Missing');
     } else {

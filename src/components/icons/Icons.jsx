@@ -97,17 +97,13 @@ function Icons(props) {
   const changeMore = () => {
     console.log("More Delete");
 
-    // let id = {"noteId":props.note._id}
-    let id = {data:{"noteId":props.note._id}}
-    service
-      .deletenotes(id)
-      .then((result) => {
-        console.log(result);
-        props.getnote(); //3.get notes(refresh display)
-      })
-      .catch((err) => {
-        console.log("Error in Deleting Notes" + err);
-      });
+    console.log("delete note");
+
+    props.note.isDeleted = true;
+
+    props.note.noteId = props.note._id;
+
+    updateNotes(props.note);
   };
 
   //------------------------------------------------More(END)
