@@ -1,47 +1,47 @@
-import React, { Component } from "react";
-import "../signin/signin.scss";
-import { TextField } from "@material-ui/core";
-import Button from "@mui/material/Button";
-import UserService from "../../services/userService";
-import {Link} from 'react-router-dom';
-import {withRouter} from 'react-router';
-const service = new UserService();
+import React, { Component } from 'react';
+import '../signin/signin.scss';
+import { TextField } from '@material-ui/core';
+import Button from '@mui/material/Button';
+import UserService from '../../services/userService';
+import customHistory from '../../components/history/history'
+import auth from '../../components/auth/auth'
 
+const service = new UserService();
 
 export class Signin extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
 
       emailError: false,
-      passwordError: false,
+      passwordError: false
     };
   }
 
   changeHandle = (e) => {
     console.log(e.target.value);
     this.setState({
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
   validation = () => {
-    let isError = false; //default is without error
+    //default is without error
+    let isError = false; 
     const error = this.state;
 
-    error.emailError = this.state.email === "" ? true : false;
-    error.passwordError = this.state.password === "" ? true : false;
+    error.emailError = this.state.email === '' ? true : false;
+    error.passwordError = this.state.password === '' ? true : false;
 
     this.setState({
-      ...error,
+      ...error
     });
 
     // returns boolean
     return (
-      //eg. if email is empty error.email is true and thus isError will be true
       (isError = error.emailError || error.passwordError)
     );
   };
@@ -49,21 +49,24 @@ export class Signin extends Component {
   next = () => {
     var validated = this.validation();
     if (validated) {
-      console.log("Something Missing");
+      // navigate('dashboard');
+      // this.props.customHistory.push('/dashboard');
+      auth.login(() => {
+        this.props.customHistory.push("/dashboard");
+      });
+      console.log('Something Missing');
     } else {
-      console.log("Validation completed");
+      console.log('Validation completed');
       let data = {
         email: this.state.email,
-        password: this.state.password,
+        password: this.state.password
       };
 
       service
         .signin(data)
         .then((res) => {
           console.log(res);
-          localStorage.setItem("token", res.data.data.token);
-          this.props.history.push("/dashboard");
-          
+          localStorage.setItem('token', res.data.data.token);
         })
         .catch((err) => {
           console.log(err);
@@ -77,12 +80,12 @@ export class Signin extends Component {
         <div className="login-main">
           <div className="login-sub">
             <div className="fundoo-l">
-              <p style={{ color: "blue" }}>F</p>
-              <p style={{ color: "red" }}>u</p>
-              <p style={{ color: "yellow" }}>n</p>
-              <p style={{ color: "blue" }}>d</p>
-              <p style={{ color: "green" }}>o</p>
-              <p style={{ color: "red" }}>o</p>
+              <p style={{ color: 'blue' }}>F</p>
+              <p style={{ color: 'red' }}>u</p>
+              <p style={{ color: 'yellow' }}>n</p>
+              <p style={{ color: 'blue' }}>d</p>
+              <p style={{ color: 'green' }}>o</p>
+              <p style={{ color: 'red' }}>o</p>
             </div>
 
             <p className="sign-in">Sign In</p>
@@ -98,7 +101,7 @@ export class Signin extends Component {
                   variant="outlined"
                   fullWidth
                   error={this.state.emailError}
-                  helperText={this.state.emailError ? "email required" : " "}
+                  helperText={this.state.emailError ? 'email required' : ' '}
                   onChange={(e) => this.changeHandle(e)}
                 />
               </div>
@@ -115,7 +118,7 @@ export class Signin extends Component {
                   fullWidth
                   helperText=" "
                   error={this.state.passwordError}
-                  helperText={this.state.passwordError ? "Password required" : " "}
+                  helperText={this.state.passwordError ? 'Password required' : ' '}
                   onChange={(e) => this.changeHandle(e)}
                 />
               </div>

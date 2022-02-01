@@ -1,6 +1,6 @@
 .mainContainer {
   margin-top: 2.5rem;
-  
+
   .subContainer {
     background-color: #fff;
     border-color: #e0e0e0;
@@ -22,15 +22,14 @@
       width: 100%;
       padding-left: 0.8rem;
     }
-   
   }
 }
 
-.dialog-display{
+.dialog-display {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 30vw;
+  width: 50vw;
   height: 30vh;
   padding: 1rem 1.6rem 1.2rem 1.6rem;
   font-family: Roboto, Arial, sans-serif;
@@ -39,7 +38,6 @@
   box-shadow: 0 10px 10px #00000033;
   background-color: #fff;
   border-color: #e0e0e0;
-  
 
   .text-area {
     width: 100%;
@@ -54,16 +52,19 @@
     }
     .closebutton {
       background-color: white;
-      border: none;
+      border: none !important;
+      outline: none !important;
+
       color: #636161;
       font-size: 1rem;
     }
   }
 }
-.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
-  border-radius: 2rem !important;
+
+.css-1hju3x6-MuiPaper-root-MuiDialog-paper {
+  border-radius: 10px !important;
 }
 .css-1hju3x6-MuiPaper-root-MuiDialog-paper {
- 
-  border-radius: 10px !important;
+  width: 50vw;
+  height: 30vh;
 }

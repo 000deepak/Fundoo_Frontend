@@ -19,21 +19,25 @@ import './Displaynote.scss';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
-    padding: theme.spacing(2)
-
+    padding: theme.spacing(2),
+    width:theme.spacing(120)
   },
   '& .MuiDialogActions-root': {
-    padding: theme.spacing(1)
+    padding: theme.spacing(1),
+    width:theme.spacing(120)
   },
 
-  '& .MuiDialog-paper':{
-    maxWidth:"800px"
+  '& .MuiDialog-paper': {
+    maxWidth: '800px',
+    fullWidth: 'true',
+    maxWidth: 'md'
   },
 
-  '& .MuiDialog':{
-    maxWidth:"20sm"
-  } 
- 
+  '& .MuiDialog': {
+    maxWidth: '20sm',
+    fullWidth: 'true',
+    maxWidth: 'md'
+  }
 }));
 
 const BootstrapDialogTitle = (props) => {
@@ -159,7 +163,7 @@ function Displaynote(props) {
       {props.notesArr.map((item) => {
         if (!(item.isArchived || item.isDeleted)) {
           return (
-            <div className="mainContainer" >
+            <div className="mainContainer">
               <div className="subContainer" style={{ backgroundColor: item.colour }}>
                 <div className="title" onClick={() => handleClickOpen(item)}>
                   {item.title}

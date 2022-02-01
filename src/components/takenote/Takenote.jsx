@@ -1,21 +1,22 @@
-import React, { useState } from "react";
-import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined";
-import InsertPhotoOutlinedIcon from "@mui/icons-material/InsertPhotoOutlined";
-import TextareaAutosize from "@mui/material/TextareaAutosize";
-import BrushOutlinedIcon from "@mui/icons-material/BrushOutlined";
-import PhotoOutlinedIcon from "@mui/icons-material/PhotoOutlined";
-import IconButton from "@mui/material/IconButton";
-import Icons from "../icons/Icons";
-import { Input } from "@mui/material";
-import service from "../../services/notesService";
-import "./takenote.scss";
+import React, { useContext, useState } from 'react';
+import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
+import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
+import BrushOutlinedIcon from '@mui/icons-material/BrushOutlined';
+import PhotoOutlinedIcon from '@mui/icons-material/PhotoOutlined';
+import IconButton from '@mui/material/IconButton';
+import Icons from '../icons/Icons';
+import { Input } from '@mui/material';
+import service from '../../services/notesService';
+import './takenote.scss';
+import noteContext from '../context/NoteContext';
 
 const initialNote = {
-  title: "",
-  description: "",
+  title: '',
+  description: '',
   colour: null,
   isArchived: false,
-  isDeleted: false,
+  isDeleted: false
 };
 
 function Takenote(props) {
@@ -23,16 +24,19 @@ function Takenote(props) {
   const [colour, setColour] = useState(null);
   const [archive, setArchive] = useState(false);
 
+  //useContext
+  const getNotes = useContext(noteContext);
+
   //setting current colour data,passed in Icon
   const handleColour = (hex) => {
     setColour(hex);
-    console.log("take a note", hex);
+    console.log('take a note', hex);
   };
 
   //setting current archive data,passed in Icon
   const handleArchive = () => {
     setArchive(true);
-    console.log("take a note", archive);
+    console.log('take a note', archive);
   };
 
   //setting current data
@@ -41,7 +45,7 @@ function Takenote(props) {
   const changedata = (e) => {
     setData((previousstate) => ({
       ...previousstate,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     }));
   };
 
@@ -52,7 +56,7 @@ function Takenote(props) {
       description: data.description,
       colour: colour,
       isArchived: archive,
-      isDeleted: data.isDeleted,
+      isDeleted: data.isDeleted
     };
 
     //1.set current data
@@ -64,12 +68,14 @@ function Takenote(props) {
         .addnotes(notedata)
         .then((result) => {
           //3.get notes(refresh display)
-          props.getnote();
+          getNotes();
+          console.log('At context');
           setData({ ...initialNote });
-          console.log("Notes Saved", result);
+          setColour(null);
+          console.log('Notes Saved', result);
         })
         .catch((err) => {
-          console.log("Error In Saving Data", err);
+          console.log('Error In Saving Data', err);
         });
     }
   };
@@ -118,17 +124,8 @@ function Takenote(props) {
 
           {/* handle archive and colour */}
           <div className="bottom">
-            <Icons
-              className="icons-set"
-              mode="create"
-              handleColour={handleColour}
-              handleArchive={handleArchive}
-            />
-            <button
-              className="closebutton"
-              onClick={() => close()}
-              style={{ backgroundColor: colour }}
-            >
+            <Icons className="icons-set" mode="create" handleColour={handleColour} handleArchive={handleArchive} />
+            <button className="closebutton" onClick={() => close()} style={{ backgroundColor: colour }}>
               close
             </button>
           </div>
