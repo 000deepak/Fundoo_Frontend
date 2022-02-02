@@ -49,6 +49,15 @@ function Icons(props) {
       console.log("create", hex);
     } 
     else if(props.mode == "update"){
+      console.log("updating colour to ", hex);
+
+      props.note.colour = hex;
+
+      props.note.noteId = props.note._id;
+
+      console.log(props.note);
+
+      updateNotes(props.note);
 
     }else {
       console.log("updating colour to ", hex);

@@ -248,6 +248,7 @@ export default function MiniDrawer(props) {
                   {' '}
                   <AccountCircleOutlinedIcon variant="contained" onClick={handleOpenUser} />
                   <Popover
+
                     className="pop"
                     id="simple-menu"
                     anchorEl={user}
@@ -258,20 +259,22 @@ export default function MiniDrawer(props) {
                       horizontal: 'left'
                     }}
                   >
-                    <Box className="account-detail">
+                    <Box className="account-detail"/*   style={{backgroundColor:"#a7ffeb"}} */>
                       <div className="profile-icon">
                         <AccountCircleOutlined
                         className='picIcon'
                           width="100"
                           height="105"
                           alt="profileImgLogo"
+                          style={{color: "#ccff90"}}
+                         
                         />
                       </div>
                       <div className="userData">{firstName}{"  "}{lastName}</div>
                      {/*  <div className="userData"></div> */}
                       <div className="userData">{email}</div>
 
-                      <Button className="signButton" onClick={handleSignOut}>
+                      <Button className="signButton" onClick={handleSignOut} style={{color: "#f28b82"}}>
                         Sign out
                       </Button>
                     </Box>
@@ -303,7 +306,7 @@ export default function MiniDrawer(props) {
           <Route exact path="/archive" element={<Archive />} />
           <Route exact path="/trash" element={<Trash />} />
           <Route exact path="/" element={<Notes />} />
-          
+
         </Routes>
 
   

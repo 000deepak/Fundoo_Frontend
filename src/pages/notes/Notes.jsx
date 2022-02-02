@@ -18,7 +18,7 @@ function Notes() {
       .getnotes()
       .then((result) => {
         //2.set current state
-        let filtered= result.data.data.filter(note=>note.isArchieved!==true && note.isDeleted!==true)
+        let filtered= result.data.data.filter(item=>item.isArchived!==true && item.isDeleted!==true)
         setNotesArr(filtered);
         console.log('Notes Fetched filtered', filtered);
         console.log('Notes Response',result.data.data);

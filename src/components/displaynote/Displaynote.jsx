@@ -14,6 +14,7 @@ import service from '../../services/notesService';
 
 import Icons from '../icons/Icons';
 import './Displaynote.scss';
+import { fontSize } from '@mui/system';
 
 //------------------------------------------------DisplayNotePurpose
 /**
@@ -194,30 +195,27 @@ function Displaynote(props) {
       {/* dialog */}
       <BootstrapDialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} maxWidth="">
         <div className="dialog-display" style={{ backgroundColor: colour }}>
-          <div>
-            <TextareaAutosize
-              name="title"
-              placeholder="Title"
-              className="text-area"
-              style={{ backgroundColor: colour }}
-              value={data.title}
-              rows="1"
-              cols="50"
-              onChange={(e) => changedata(e)}
-            ></TextareaAutosize>
-          </div>
-          <div>
-            <TextareaAutosize
-              name="description"
-              placeholder="Take A Note..."
-              className="text-area"
-              value={data.description}
-              style={{ backgroundColor: colour }}
-              rows="10"
-              cols="50"
-              onChange={(e) => changedata(e)}
-            ></TextareaAutosize>
-          </div>
+          <TextareaAutosize
+            name="title"
+            placeholder="Title"
+            className="text-area"
+            style={{ backgroundColor: colour }}
+            value={data.title}
+            rows="1"
+            cols="50"
+            onChange={(e) => changedata(e)}
+          ></TextareaAutosize>
+
+          <TextareaAutosize
+            name="description"
+            placeholder="Take A Note..."
+            className="text-area"
+            value={data.description}
+            style={{ backgroundColor: colour }}
+            rows="10"
+            cols="50"
+            onChange={(e) => changedata(e)}
+          ></TextareaAutosize>
 
           {/* update single notes Colour | isArchive | isDeleted */}
           {/* pass handle archive and colour to ICONS */}

@@ -6,7 +6,6 @@ import UserService from '../../services/userService';
 import auth from '../../components/auth/auth'
 import { Navigate } from 'react-router-dom';
 
-
 const service = new UserService();
 
 export class Signin extends Component {
@@ -20,7 +19,7 @@ export class Signin extends Component {
 
       emailError: false,
       passwordError: false,
-      isLogdin:null
+      isLoggedIn:null
 
     };
   }
@@ -54,7 +53,6 @@ export class Signin extends Component {
     var validated = this.validation();
    
     if (validated) {
-
       console.log('Something Missing');
     } else {
       console.log('Validation completed');
@@ -71,8 +69,9 @@ export class Signin extends Component {
           localStorage.setItem('firstName', res.data.data.fName);
           localStorage.setItem('lastName', res.data.data.lName);
           localStorage.setItem('email', res.data.data.email);
+          
           this.setState({
-            isLogdin: true
+            isLoggedIn: true
           })
 
         })
@@ -83,7 +82,7 @@ export class Signin extends Component {
   };
 
   render() {
-    if(this.state.isLogdin ) 
+    if(this.state.isLoggedIn ) 
     {
      return <Navigate to="/" />
     }
