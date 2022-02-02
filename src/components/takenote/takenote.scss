@@ -1,14 +1,16 @@
 /* first display */
 
-.takeMain{
-  margin-left: 23rem;
-  margin-top: 1rem;
+.takeMain {
+  margin-left: 21rem;
+  margin-top: 5rem;
 }
 .newfirst {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 45vw;
-  height: 6vh;
-  padding: 0.6rem 1.6rem 1.2rem 1.6rem;
+  height: 3rem;
+  // padding: 0.6rem 1.6rem 1.2rem 2rem;
   border: 1px solid #dadce0;
   border-radius: 0.5rem;
   border-color: #e0e0e0;
@@ -20,10 +22,14 @@
     width: 30%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding-right: 1rem;
   }
   .newnote {
+    font-weight: 300px;
     width: 70%;
     color: #797777;
+    padding-left: 1rem;
   }
 }
 
@@ -41,12 +47,13 @@
   box-shadow: 0 10px 10px #00000033;
   background-color: #fff;
   border-color: #e0e0e0;
-  
 
   .text-area {
     width: 100%;
     border: none;
     outline: none;
+    font-size: 15px;
+
   }
 
   .bottom {
@@ -63,16 +70,43 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+  .takeMain {
+    margin-left: 18rem;
+    margin-top: 10rem;
+    width: 70%;
+  }
+  .newfirst {
+    width: 110%;
+    height: 5rem;
+    padding: 0rem 0rem 0rem 0rem;
+
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+
+  .newsecond {
+    width: 100%;
+    min-height: 15vh;
+  }
+}
+
 
 @media screen and (max-width: 600px) {
-  .takeMain{
-    margin-left: 0rem;
+  .takeMain {
+    margin-left: 8rem;
+    margin-top: 10rem;
+    width: 78%;
   }
   .newfirst {
     width: 100%;
-    height: 15%;
-    margin-left: 5px ;
+    height: 4rem;
+    padding: 0rem 0rem 0rem 0rem;
+
+    margin-left: 1vw;
     margin-top: 0px;
+    font-size: 12px;
+
   }
 
   .newsecond {

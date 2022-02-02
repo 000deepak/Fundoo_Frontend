@@ -104,6 +104,8 @@ function Displaynote(props) {
 
     setArchive(note.isArchived);
 
+    setTrash(note.isDeleted);
+
     setData({
       noteId: note._id,
       title: note.title,
@@ -119,7 +121,7 @@ function Displaynote(props) {
 
     data.colour = colour;
     data.isArchived = archive;
-    data.isDeleted = false;
+    data.isDeleted = trash;
 
     console.log(data);
     if (data.title) {
@@ -146,6 +148,7 @@ function Displaynote(props) {
 
   const [colour, setColour] = useState(null);
   const [archive, setArchive] = useState(false);
+  const [trash, setTrash] = useState(false);
 
   //setting current colour data,passed in Icon
   const handleColour = (hex) => {

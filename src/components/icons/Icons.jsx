@@ -1,32 +1,32 @@
-import * as React from "react";
-import { useState } from "react";
-import IconButton from "@mui/material/IconButton";
-import AddAlertOutlinedIcon from "@mui/icons-material/AddAlertOutlined";
-import PersonAddAlt1OutlinedIcon from "@mui/icons-material/PersonAddAlt1Outlined";
-import ColorLensOutlinedIcon from "@mui/icons-material/ColorLensOutlined";
-import PhotoOutlinedIcon from "@mui/icons-material/PhotoOutlined";
-import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
-import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
-import Typography from "@mui/material/Typography";
-import Popover from "@mui/material/Popover";
-import MenuItem from "@material-ui/core/MenuItem";
-import service from "../../services/notesService";
-import "./icons.scss";
+import * as React from 'react';
+import { useState } from 'react';
+import IconButton from '@mui/material/IconButton';
+import AddAlertOutlinedIcon from '@mui/icons-material/AddAlertOutlined';
+import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
+import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
+import PhotoOutlinedIcon from '@mui/icons-material/PhotoOutlined';
+import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
+import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
+import Typography from '@mui/material/Typography';
+import Popover from '@mui/material/Popover';
+import MenuItem from '@material-ui/core/MenuItem';
+import service from '../../services/notesService';
+import './icons.scss';
 
 function Icons(props) {
   //------------------------------------------------Colour
 
   let hexColour = [
-    "#f28b82",
-    "#fbbc04",
-    "#fff475",
-    "#ccff90",
-    "#a7ffeb",
-    "#cbf0f8",
-    "#aecbfa",
-    "#d7aefb",
-    "#fdcfe8",
-    "#e6c9a8",
+    '#f28b82',
+    '#fbbc04',
+    '#fff475',
+    '#ccff90',
+    '#a7ffeb',
+    '#cbf0f8',
+    '#aecbfa',
+    '#d7aefb',
+    '#fdcfe8',
+    '#e6c9a8'
   ];
 
   const [colr, setColr] = useState(null);
@@ -43,13 +43,12 @@ function Icons(props) {
   // const id = open ? "simple-popover" : undefined;
 
   const changeColour = (hex) => {
-    if (props.mode == "create") {
+    if (props.mode == 'create') {
       props.handleColour(hex);
 
-      console.log("create", hex);
-    } 
-    else if(props.mode == "update"){
-      console.log("updating colour to ", hex);
+      console.log('create', hex);
+    } else if (props.mode == 'update') {
+      console.log('updating colour to ', hex);
 
       props.note.colour = hex;
 
@@ -58,9 +57,8 @@ function Icons(props) {
       console.log(props.note);
 
       updateNotes(props.note);
-
-    }else {
-      console.log("updating colour to ", hex);
+    } else {
+      console.log('updating colour to ', hex);
 
       props.note.colour = hex;
 
@@ -76,11 +74,11 @@ function Icons(props) {
   //------------------------------------------------Archive
 
   const changeArchive = () => {
-    if (props.mode == "create") {
+    if (props.mode == 'create') {
       props.handleArchive();
-      console.log("create archive");
+      console.log('create archive');
     } else {
-      console.log("update archive");
+      console.log('update archive');
 
       props.note.isArchived = true;
 
@@ -95,7 +93,7 @@ function Icons(props) {
 
   const [more, setMore] = useState(false);
 
-  let More = ["Delete note", "More"];
+  let More = ['Delete note', 'More'];
 
   const handleOpenMore = (e) => {
     setMore(e.currentTarget);
@@ -107,9 +105,9 @@ function Icons(props) {
   };
 
   const changeMore = () => {
-    console.log("More Delete");
+    console.log('More Delete');
 
-    console.log("delete note");
+    console.log('delete note');
 
     props.note.isDeleted = true;
 
@@ -129,10 +127,10 @@ function Icons(props) {
       .updatenotes(data)
       .then((result) => {
         props.getnote(); //3.get notes(refresh display)
-        console.log("Notes Updated", result);
+        console.log('Notes Updated', result);
       })
       .catch((err) => {
-        console.log("Error in Updating notes", err);
+        console.log('Error in Updating notes', err);
       });
   };
 
@@ -160,23 +158,19 @@ function Icons(props) {
             onClick={handleOpen}
           />
           <Popover
-            id={"colour"}
+            id={'colour'}
             open={Boolean(colr)}
             anchorEl={colr}
             onClose={handleClose}
             anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
+              vertical: 'bottom',
+              horizontal: 'left'
             }}
           >
             <Typography sx={{ p: 1 }}>
               <div className="pallete">
                 {hexColour.map((hex) => (
-                  <div
-                    className="icon-pop"
-                    style={{ backgroundColor: hex }}
-                    onClick={() => changeColour(hex)}
-                  ></div>
+                  <div className="icon-pop" style={{ backgroundColor: hex }} onClick={() => changeColour(hex)}></div>
                 ))}
               </div>
             </Typography>
@@ -213,8 +207,8 @@ function Icons(props) {
             open={Boolean(more)}
             onClose={handleCloseMore}
             anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
+              vertical: 'bottom',
+              horizontal: 'left'
             }}
           >
             {More.map((more) => (

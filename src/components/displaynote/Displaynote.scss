@@ -1,16 +1,26 @@
 .main-display {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  margin: 1.5rem 2rem 0rem 3rem;
+  grid-template-columns: repeat(5, 1fr);
+  margin: 3rem 0rem 0rem 6rem;
+  column-gap: 1rem;
   color: #80868b;
 }
 
+// hover effect
+// .subContainer:hover .icons{
+// display: flex;
+// }
+
+// .icons{
+//   display: none;
+// }
+
 .subContainer {
+  width: 17.5vw;
+  min-height: 18vh;
   border-color: #e0e0e0;
   border: 1px solid #dadce0;
-  border-radius: 1rem;
-  width: 18vw;
-  min-height: 18vh;
+  border-radius: 0.7rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -18,16 +28,26 @@
   margin-top: 1.5rem;
 
   .title {
-    font-family: 'Google Sans',Roboto,Arial,sans-serif;
-    font-size: 15px ;
+    color: #202124 !important;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
+    font-size: 18px;
     width: 4rem;
     padding-left: 1rem;
+    font-size: 1.125rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.5rem;
   }
   .notes {
-    font-family: 'Google Sans',Roboto,Arial,sans-serif;
+    color: #202124 !important;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
     width: 100%;
     padding-left: 1rem;
-    font-size: 15px ;
+    font-size: 18px;
+    font-size: 1.125rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.5rem;
   }
 }
 
@@ -49,13 +69,14 @@
     width: 100%;
     border: none;
     outline: none;
+    font-size: 15px;
   }
 
   .bottom {
     display: flex;
     .icons-set {
       width: 80%;
-      font-size: 15px ;
+      font-size: 15px;
     }
     .closebutton {
       background-color: white;
@@ -77,51 +98,51 @@
   min-height: 30vh;
 }
 
-@media screen and (max-width: 1050px) {
+//below 769px
+@media screen and (max-width: 768px) {
   .main-display {
-    grid-template-columns: repeat(5, 1fr) !important;
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: none;
+
+    margin: 1.5rem 5rem 0rem 11rem;
+  }
+
+  .subContainer {
+    width: 95%;
+    min-height: 18rem;
+    // margin-top: 4rem;
+    padding-left: 2rem;
+
+    .title {
+      font-size: 12px;
+    }
+    .notes {
+      font-size: 12px;
+    }
   }
 }
 
-@media screen and (max-width: 900px) {
-  .main-display {
-    grid-template-columns: repeat(4, 1fr) !important;
-  }
-}
-
-// @media screen and (max-width: 750px) {
-//   .main-display {
-//     grid-template-columns: repeat(2, 1fr) !important;
-//     height: auto;
-//     width: 100%;
-//   }
-//   .subContainer {
-//     width: 95%;
-//     height: 12rem;
-
-//     padding-left: 0.5rem;
-//     padding-right: 0.5rem;
-//     margin-top: 2rem;
-
-//   }
-// }
-
+//below 600px
 @media screen and (max-width: 600px) {
   .main-display {
     display: flex;
     flex-direction: column;
-    font-size: 1.5rem;
-    width: 95%;
-  margin: 0rem 0rem 0rem 0rem;
-
+    font-size: 15px;
+    width: 70vw;
+    margin: 0rem 0rem 0rem 8rem;
   }
 
   .subContainer {
-    width: 110%;
-    min-height:  15rem;
-    // margin-top: 4rem;
+    width: 76vw;
+    min-height: 15rem;
     padding-left: 2rem;
-
   }
-
+  .title {
+    font-size: 12px;
+  }
+  .notes {
+    font-size: 12px;
+  }
 }

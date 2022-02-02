@@ -31,7 +31,7 @@ import Popover from '@mui/material/Popover';
 import AccountCircleOutlined from '@mui/icons-material/AccountCircleOutlined';
 import { Button } from '@mui/material';
 
-import {  Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 
 import '../dashboard/Dashboard.scss';
 import Notes from '../notes/Notes';
@@ -45,7 +45,6 @@ import Trash from '../trash/Trash';
  * 2.display and handle click of side icons using navigate
  * 3.internal routing for notes,archived and trash notes
  */
-
 
 //------------------------------------------------Drawer
 const drawerWidth = 240;
@@ -86,7 +85,7 @@ const AppBar = styled(MuiAppBar, {
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
+    duration: theme.transitions.duration.leavingScreen
     // backgroundColor: '#fff'
   }),
   ...(open && {
@@ -143,10 +142,9 @@ export default function MiniDrawer(props) {
     goto('/Signin');
   };
 
-  let email=localStorage.getItem("email");
-  let firstName=localStorage.getItem("firstName");
-  let lastName=localStorage.getItem("lastName");
-
+  let email = localStorage.getItem('email');
+  let firstName = localStorage.getItem('firstName');
+  let lastName = localStorage.getItem('lastName');
 
   //------------------------------------------------user(END)
 
@@ -248,7 +246,6 @@ export default function MiniDrawer(props) {
                   {' '}
                   <AccountCircleOutlinedIcon variant="contained" onClick={handleOpenUser} />
                   <Popover
-
                     className="pop"
                     id="simple-menu"
                     anchorEl={user}
@@ -259,22 +256,25 @@ export default function MiniDrawer(props) {
                       horizontal: 'left'
                     }}
                   >
-                    <Box className="account-detail"/*   style={{backgroundColor:"#a7ffeb"}} */>
+                    <Box className="account-detail" /*   style={{backgroundColor:"#a7ffeb"}} */>
                       <div className="profile-icon">
                         <AccountCircleOutlined
-                        className='picIcon'
+                          className="picIcon"
                           width="100"
                           height="105"
                           alt="profileImgLogo"
-                          style={{color: "#ccff90"}}
-                         
+                          style={{ color: '#ccff90' }}
                         />
                       </div>
-                      <div className="userData">{firstName}{"  "}{lastName}</div>
-                     {/*  <div className="userData"></div> */}
+                      <div className="userData">
+                        {firstName}
+                        {'  '}
+                        {lastName}
+                      </div>
+                      {/*  <div className="userData"></div> */}
                       <div className="userData">{email}</div>
 
-                      <Button className="signButton" onClick={handleSignOut} style={{color: "#f28b82"}}>
+                      <Button className="signButton" onClick={handleSignOut} style={{ color: '#f28b82' }}>
                         Sign out
                       </Button>
                     </Box>
@@ -286,8 +286,10 @@ export default function MiniDrawer(props) {
         </Toolbar>
       </AppBar>
 
+      <div className='side-bar'>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader></DrawerHeader>
+       
         <List>
           {iconlist.map((text, index) => (
             <ListItem button key={text.iText} onClick={() => handleSideBar(text)}>
@@ -296,21 +298,20 @@ export default function MiniDrawer(props) {
             </ListItem>
           ))}
         </List>
-      </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
 
+      </Drawer>
+      </div>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        {/* <DrawerHeader /> */}
 
         <Routes>
-         
-          <Route exact path="/archive" element={<Archive />} />
-          <Route exact path="/trash" element={<Trash />} />
-          <Route exact path="/" element={<Notes />} />
-
-        </Routes>
+        <Route exact path="/archive" element={<Archive />} />
+        <Route exact path="/trash" element={<Trash />} />
+        <Route exact path="/" element={<Notes />} />
+      </Routes>
+      </Box>
 
   
-      </Box>
     </Box>
   );
 }
