@@ -22,10 +22,10 @@ function App() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/forgotpassword" element={<Forgot />} />
         <Route path="/resetpassword/:id" element={<Reset />} />
-        <Route path="/dashboard/*" element={<Dashboard />} />
-        {/* <Route path="/notes" component={Notes} />
-        <Route path="/archive" component={<Archive/>} />
-        <Route path="/trash" component={Trash} /> */}
+        <Route path="/" element={<Dashboard />} >
+        <Route exact path="/archive" element={<Archive />} />
+        <Route exact path="/trash" element={<Trash/>} />
+        </Route>
         {/* <Route path="/dashboard/*">. */}
         {/* <ProtectedRoute path="/dashboard" component={Dashboard} /> */}
         {/* <PrivateRoute path="/dashboard" component={Dashboard} /> */}

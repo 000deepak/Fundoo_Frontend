@@ -3,14 +3,14 @@ import '../signin/signin.scss';
 import { TextField } from '@material-ui/core';
 import Button from '@mui/material/Button';
 import UserService from '../../services/userService';
-// import customHistory from '../../components/history/history'
 import auth from '../../components/auth/auth'
-import history from 'history';
+import { Navigate } from 'react-router-dom';
 
 
 const service = new UserService();
 
 export class Signin extends Component {
+  
   constructor(props) {
     super(props);
 
@@ -19,7 +19,9 @@ export class Signin extends Component {
       password: '',
 
       emailError: false,
-      passwordError: false
+      passwordError: false,
+      isLogdin:null
+
     };
   }
 
@@ -50,12 +52,9 @@ export class Signin extends Component {
 
   next = () => {
     var validated = this.validation();
+   
     if (validated) {
-      // navigate('dashboard');
-      // this.props.customHistory.push('/dashboard');
-      auth.login(() => {
-        this.props.history.push("/dashboard");
-      });
+
       console.log('Something Missing');
     } else {
       console.log('Validation completed');
@@ -69,6 +68,13 @@ export class Signin extends Component {
         .then((res) => {
           console.log(res);
           localStorage.setItem('token', res.data.data.token);
+          localStorage.setItem('firstName', res.data.data.fName);
+          localStorage.setItem('lastName', res.data.data.lName);
+          localStorage.setItem('email', res.data.data.email);
+          this.setState({
+            isLogdin: true
+          })
+
         })
         .catch((err) => {
           console.log(err);
@@ -77,7 +83,12 @@ export class Signin extends Component {
   };
 
   render() {
+    if(this.state.isLogdin ) 
+    {
+     return <Navigate to="/" />
+    }
     return (
+          
       <div className="main-page">
         <div className="login-main">
           <div className="login-sub">
@@ -143,6 +154,7 @@ export class Signin extends Component {
           </div>
         </div>
       </div>
+     
     );
   }
 }

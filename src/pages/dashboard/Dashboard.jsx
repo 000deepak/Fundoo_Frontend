@@ -31,13 +31,21 @@ import Popover from '@mui/material/Popover';
 import AccountCircleOutlined from '@mui/icons-material/AccountCircleOutlined';
 import { Button } from '@mui/material';
 
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import {  Routes, Route, Link } from 'react-router-dom';
 
 import '../dashboard/Dashboard.scss';
 import Notes from '../notes/Notes';
 import Signin from '../signin/Signin';
 import Archive from '../archive/Archive';
 import Trash from '../trash/Trash';
+
+//------------------------------------------------DashboardPurpose
+/**
+ * 1.include mini drawer
+ * 2.display and handle click of side icons using navigate
+ * 3.internal routing for notes,archived and trash notes
+ */
+
 
 //------------------------------------------------Drawer
 const drawerWidth = 240;
@@ -79,7 +87,7 @@ const AppBar = styled(MuiAppBar, {
   transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
-    backgroundColor: '#fff'
+    // backgroundColor: '#fff'
   }),
   ...(open && {
     marginLeft: drawerWidth,
@@ -125,24 +133,20 @@ export default function MiniDrawer(props) {
     setUser(false);
   };
 
-    //SignOut
-    const handleSignOut= () => {
-      // localStorage.removeItem("token");
-      goto('/Signin')
-      
-    };
+  //SignOut
+  const handleSignOut = () => {
+    // localStorage.removeItem("token");
+    // localStorage.removeItem("token");
+    // localStorage.removeItem("email");
+    // localStorage.removeItem("firstName");
+    // localStorage.removeItem("lastName");
+    goto('/Signin');
+  };
 
-  // const changeuser = () => {
-  //   console.log("user Delete");
+  let email=localStorage.getItem("email");
+  let firstName=localStorage.getItem("firstName");
+  let lastName=localStorage.getItem("lastName");
 
-  //   console.log("delete note");
-
-  //   props.note.isDeleted = true;
-
-  //   props.note.noteId = props.note._id;
-
-  //   updateNotes(props.note);
-  // };
 
   //------------------------------------------------user(END)
 
@@ -185,7 +189,7 @@ export default function MiniDrawer(props) {
   const handleSideBar = (text) => {
     if (text.iText == 'Notes') {
       console.log('This is Notes');
-      goto('/notes');
+      goto('/');
     } else if (text.iText == 'Archive') {
       console.log('This is Archive');
       goto('/archive');
@@ -244,6 +248,7 @@ export default function MiniDrawer(props) {
                   {' '}
                   <AccountCircleOutlinedIcon variant="contained" onClick={handleOpenUser} />
                   <Popover
+                    className="pop"
                     id="simple-menu"
                     anchorEl={user}
                     open={Boolean(user)}
@@ -253,30 +258,22 @@ export default function MiniDrawer(props) {
                       horizontal: 'left'
                     }}
                   >
-                    <Box
-                      className="account-detail"
-                      sx={{
-                        p: 1,
-                        bgcolor: 'background.paper',
-                        textAlign: 'center',
-                        display: 'block',
-                        border: '1px solid #bbb',
-                        fontSize: '16px',
-                        margin: '30px 30px 30px 30px',
-                        borderRadius: '10px'
-                      }}
-                    >
+                    <Box className="account-detail">
                       <div className="profile-icon">
                         <AccountCircleOutlined
-                          width="200"
+                        className='picIcon'
+                          width="100"
                           height="105"
                           alt="profileImgLogo"
-                          style={{ fontSize: '50px' }}
                         />
                       </div>
-                      <div>userData</div>
+                      <div className="userData">{firstName}{"  "}{lastName}</div>
+                     {/*  <div className="userData"></div> */}
+                      <div className="userData">{email}</div>
 
-                      <Button onClick={handleSignOut}>Sign out</Button>
+                      <Button className="signButton" onClick={handleSignOut}>
+                        Sign out
+                      </Button>
                     </Box>
                   </Popover>
                 </IconButton>
@@ -300,27 +297,16 @@ export default function MiniDrawer(props) {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
 
-        <Notes />
 
-        {/* <Archive /> */}
+        <Routes>
+         
+          <Route exact path="/archive" element={<Archive />} />
+          <Route exact path="/trash" element={<Trash />} />
+          <Route exact path="/" element={<Notes />} />
+          
+        </Routes>
 
-        {/* <Trash /> */}
-
-        {/* <Routes>
-          <Route path="/trash" component={Trash} />
-          <Route path="/notes" component={Notes} />
-          <Route path="/archive" component={Archive} />
-          <Route path="/trash" component={Trash} />
-        </Routes>  */}
-
-        {/* <Router>
-          <Routes>
-            <Route path="/notes" component={Notes} />
-            <Route path="/archive" component={Archive} />
-            <Route path="/trash" component={Trash} />
-            <Notes/>
-          </Routes>
-        </Router> */}
+  
       </Box>
     </Box>
   );

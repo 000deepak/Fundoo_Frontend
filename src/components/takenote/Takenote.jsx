@@ -30,13 +30,13 @@ function Takenote(props) {
   //setting current colour data,passed in Icon
   const handleColour = (hex) => {
     setColour(hex);
-    console.log('take a note', hex);
+    console.log('update note', hex);
   };
 
   //setting current archive data,passed in Icon
   const handleArchive = () => {
     setArchive(true);
-    console.log('take a note', archive);
+    console.log('update note', archive);
   };
 
   //setting current data
@@ -81,7 +81,7 @@ function Takenote(props) {
   };
 
   return (
-    <div>
+    <div className='takeMain'>
       {closed ? (
         <div className="newfirst" onClick={() => setClosed(false)}>
           <div className="newnote">Take A Note...</div>

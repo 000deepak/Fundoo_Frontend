@@ -47,7 +47,10 @@ function Icons(props) {
       props.handleColour(hex);
 
       console.log("create", hex);
-    } else {
+    } 
+    else if(props.mode == "update"){
+
+    }else {
       console.log("updating colour to ", hex);
 
       props.note.colour = hex;

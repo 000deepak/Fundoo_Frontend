@@ -15,16 +15,25 @@ import service from '../../services/notesService';
 import Icons from '../icons/Icons';
 import './Displaynote.scss';
 
+//------------------------------------------------DisplayNotePurpose
+/**
+ * 1.display notes from notes array
+ * 2.open dialog on click of note
+ * 3.internal routing for notes,archived and trash notes
+ * 4.pass handle colour and handle archive to ICONS
+ * 5.take current state from ICONS and simply hit update api
+ */
+
 //---------------------------------------------Dialog
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
-    width:theme.spacing(120)
+    width: theme.spacing(120)
   },
   '& .MuiDialogActions-root': {
     padding: theme.spacing(1),
-    width:theme.spacing(120)
+    width: theme.spacing(120)
   },
 
   '& .MuiDialog-paper': {
@@ -81,6 +90,7 @@ let initialNote = {
 };
 
 function Displaynote(props) {
+  console.log(props, 'display props');
   //------------------------------------------DialogState
   const [open, setOpen] = React.useState(false);
 
@@ -90,6 +100,8 @@ function Displaynote(props) {
     console.log(note._id, 'noteId');
 
     setColour(note.colour);
+
+    setArchive(note.isArchived);
 
     setData({
       noteId: note._id,
@@ -103,8 +115,6 @@ function Displaynote(props) {
 
   const handleClose = () => {
     setOpen(false);
-
-    console.log(data, 'update data');
 
     data.colour = colour;
     data.isArchived = archive;
@@ -160,27 +170,27 @@ function Displaynote(props) {
 
   return (
     <div className="main-display">
-      {props.notesArr.map((item) => {
-        if (!(item.isArchived || item.isDeleted)) {
+      {props.noteArr.map((item) => {
+        if (true) {
           return (
-            <div className="mainContainer">
-              <div className="subContainer" style={{ backgroundColor: item.colour }}>
-                <div className="title" onClick={() => handleClickOpen(item)}>
-                  {item.title}
-                </div>
-                <div className="notes" onClick={() => handleClickOpen(item)}>
-                  {' '}
-                  {item.description}
-                </div>
-                <div className="icons">
-                  <Icons mode="update" note={item} getnote={props.getnote} />
-                </div>
+            <div className="subContainer" style={{ backgroundColor: item.colour }}>
+              <div className="title" onClick={() => handleClickOpen(item)}>
+                {item.title}
+              </div>
+              <div className="notes" onClick={() => handleClickOpen(item)}>
+                {' '}
+                {item.description}
+              </div>
+              <div className="icons">
+                {/* update grid notes Colour | isArchive | isDeleted*/}
+                <Icons mode="update" note={item} getnote={props.getnote} />
               </div>
             </div>
           );
         }
       })}
 
+      {/* update single notes  Title | Description*/}
       {/* dialog */}
       <BootstrapDialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} maxWidth="">
         <div className="dialog-display" style={{ backgroundColor: colour }}>
@@ -190,6 +200,7 @@ function Displaynote(props) {
               placeholder="Title"
               className="text-area"
               style={{ backgroundColor: colour }}
+              value={data.title}
               rows="1"
               cols="50"
               onChange={(e) => changedata(e)}
@@ -200,6 +211,7 @@ function Displaynote(props) {
               name="description"
               placeholder="Take A Note..."
               className="text-area"
+              value={data.description}
               style={{ backgroundColor: colour }}
               rows="10"
               cols="50"
@@ -207,9 +219,10 @@ function Displaynote(props) {
             ></TextareaAutosize>
           </div>
 
-          {/* handle archive and colour */}
+          {/* update single notes Colour | isArchive | isDeleted */}
+          {/* pass handle archive and colour to ICONS */}
           <div className="bottom">
-            <Icons className="icons-set" mode="create" handleColour={handleColour} handleArchive={handleArchive} />
+            <Icons className="icons-set" mode="update" handleColour={handleColour} handleArchive={handleArchive} />
             <button className="closebutton" autoFocus onClick={handleClose} style={{ backgroundColor: colour }}>
               close
             </button>
