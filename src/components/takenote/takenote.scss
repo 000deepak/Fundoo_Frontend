@@ -1,3 +1,9 @@
+@mixin flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 /* first display */
 
 .takeMain {
@@ -5,12 +11,9 @@
   margin-top: 5rem;
 }
 .newfirst {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include flex();
   width: 45vw;
   height: 3rem;
-  // padding: 0.6rem 1.6rem 1.2rem 2rem;
   border: 1px solid #dadce0;
   border-radius: 0.5rem;
   border-color: #e0e0e0;
@@ -24,6 +27,7 @@
     justify-content: space-between;
     align-items: center;
     padding-right: 1rem;
+    padding-top: 0.5rem;
   }
   .newnote {
     font-weight: 300px;
@@ -53,15 +57,14 @@
     border: none;
     outline: none;
     font-size: 15px;
-
   }
 
-  .bottom {
+  .take-bottom {
     display: flex;
-    .icons-set {
+    .take-icons {
       width: 80%;
     }
-    .closebutton {
+    .take-close {
       background-color: white;
       border: none;
       color: #636161;
@@ -91,7 +94,6 @@
   }
 }
 
-
 @media screen and (max-width: 600px) {
   .takeMain {
     margin-left: 8rem;
@@ -106,7 +108,6 @@
     margin-left: 1vw;
     margin-top: 0px;
     font-size: 12px;
-
   }
 
   .newsecond {
@@ -114,4 +115,3 @@
     min-height: 15vh;
   }
 }
-

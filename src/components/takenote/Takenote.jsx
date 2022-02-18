@@ -123,9 +123,9 @@ function Takenote(props) {
           </div>
 
           {/* handle archive and colour */}
-          <div className="bottom">
-            <Icons className="icons-set" mode="create" handleColour={handleColour} handleArchive={handleArchive} />
-            <button className="closebutton" onClick={() => close()} style={{ backgroundColor: colour }}>
+          <div className="take-bottom">
+            <Icons className="take-icons" mode="create" handleColour={handleColour} handleArchive={handleArchive} />
+            <button className="take-close" onClick={() => close()} style={{ backgroundColor: colour }}>
               close
             </button>
           </div>

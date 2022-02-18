@@ -1,59 +1,56 @@
+@mixin borderOut {
+  outline: none;
+  border: none;
+}
+
+@mixin display-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin font {
+  color: #202124 !important;
+  font-family: 'Google Sans', Roboto, Arial, sans-serif;
+  font-size: 18px;
+  font-size: 1.125rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.5rem;
+}
+
 .main-display {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   margin: 3rem 0rem 0rem 6rem;
   column-gap: 1rem;
   color: #80868b;
-}
 
-// hover effect
-// .subContainer:hover .icons{
-// display: flex;
-// }
+  .subContainer {
+    @include display-flex();
+    justify-content: space-around;
+    width: 17.5vw;
+    min-height: 18vh;
+    border-color: #e0e0e0;
+    border: 1px solid #dadce0;
+    border-radius: 0.7rem;
+    padding-left: 0.5rem;
+    margin-top: 1.5rem;
 
-// .icons{
-//   display: none;
-// }
-
-.subContainer {
-  width: 17.5vw;
-  min-height: 18vh;
-  border-color: #e0e0e0;
-  border: 1px solid #dadce0;
-  border-radius: 0.7rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding-left: 0.5rem;
-  margin-top: 1.5rem;
-
-  .title {
-    color: #202124 !important;
-    font-family: 'Google Sans', Roboto, Arial, sans-serif;
-    font-size: 18px;
-    width: 4rem;
-    padding-left: 1rem;
-    font-size: 1.125rem;
-    font-weight: 400;
-    letter-spacing: 0;
-    line-height: 1.5rem;
-  }
-  .notes {
-    color: #202124 !important;
-    font-family: 'Google Sans', Roboto, Arial, sans-serif;
-    width: 100%;
-    padding-left: 1rem;
-    font-size: 18px;
-    font-size: 1.125rem;
-    font-weight: 400;
-    letter-spacing: 0;
-    line-height: 1.5rem;
+    .title {
+      @include font();
+      width: 4rem;
+      padding-left: 1rem;
+    }
+    .notes {
+      @include font();
+      width: 100%;
+      padding-left: 1rem;
+    }
   }
 }
 
 .dialog-display {
-  display: flex;
-  flex-direction: column;
+  @include display-flex();
   justify-content: space-between;
   width: 50vw;
   min-height: 30vh;
@@ -72,16 +69,15 @@
     font-size: 15px;
   }
 
-  .bottom {
+  .display-bottom {
     display: flex;
-    .icons-set {
+    .display-icons {
       width: 80%;
       font-size: 15px;
     }
-    .closebutton {
+    .display-close {
+      @include borderOut();
       background-color: white;
-      border: none !important;
-      outline: none !important;
       color: #636161;
       font-size: 1rem;
     }
@@ -105,14 +101,12 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: none;
-
     margin: 1.5rem 5rem 0rem 11rem;
   }
 
   .subContainer {
     width: 95%;
     min-height: 18rem;
-    // margin-top: 4rem;
     padding-left: 2rem;
 
     .title {

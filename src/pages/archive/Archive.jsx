@@ -7,7 +7,8 @@ import service from '../../services/notesService';
  * 1.get archived notes from Db
  * 2.store in archive
  * 3.pass array to display
-*  */ 
+ *  
+ * */ 
 
 export default function Archive() {
 

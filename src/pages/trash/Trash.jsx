@@ -7,7 +7,8 @@ import service from '../../services/notesService';
  * 1.get deleted notes from Db
  * 2.store in binArr
  * 3.pass array to display
-*  */ 
+ *  
+ * */ 
 
 export default function Trash() {
   const [binArr, setbinArr] = useState([]);

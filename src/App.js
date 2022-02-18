@@ -7,7 +7,6 @@ import Forgot from './pages/forgotpassword/ForgotPassword';
 import Dashboard from './pages/dashboard/Dashboard';
 import { ProtectedRoute } from './components/auth/protected.route';
 import auth from './components/auth/auth';
-import customHistory from '../src/components/history/history';
 import Archive from './pages/archive/Archive';
 import Notes from './pages/notes/Notes';
 import Trash from './pages/trash/Trash';

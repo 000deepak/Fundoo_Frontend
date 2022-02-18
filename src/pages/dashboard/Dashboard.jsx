@@ -260,8 +260,6 @@ export default function MiniDrawer(props) {
                       <div className="profile-icon">
                         <AccountCircleOutlined
                           className="picIcon"
-                          width="100"
-                          height="105"
                           alt="profileImgLogo"
                           style={{ color: '#ccff90' }}
                         />
@@ -286,32 +284,29 @@ export default function MiniDrawer(props) {
         </Toolbar>
       </AppBar>
 
-      <div className='side-bar'>
-      <Drawer variant="permanent" open={open}>
-        <DrawerHeader></DrawerHeader>
-       
-        <List>
-          {iconlist.map((text, index) => (
-            <ListItem button key={text.iText} onClick={() => handleSideBar(text)}>
-              <ListItemIcon>{text.icons}</ListItemIcon>
-              <ListItemText primary={text.iText} />
-            </ListItem>
-          ))}
-        </List>
+      <div className="side-bar">
+        <Drawer variant="permanent" open={open}>
+          <DrawerHeader></DrawerHeader>
 
-      </Drawer>
+          <List>
+            {iconlist.map((text, index) => (
+              <ListItem button key={text.iText} onClick={() => handleSideBar(text)}>
+                <ListItemIcon>{text.icons}</ListItemIcon>
+                <ListItemText primary={text.iText} />
+              </ListItem>
+            ))}
+          </List>
+        </Drawer>
       </div>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         {/* <DrawerHeader /> */}
 
         <Routes>
-        <Route exact path="/archive" element={<Archive />} />
-        <Route exact path="/trash" element={<Trash />} />
-        <Route exact path="/" element={<Notes />} />
-      </Routes>
+          <Route exact path="/archive" element={<Archive />} />
+          <Route exact path="/trash" element={<Trash />} />
+          <Route exact path="/" element={<Notes />} />
+        </Routes>
       </Box>
-
-  
     </Box>
   );
 }

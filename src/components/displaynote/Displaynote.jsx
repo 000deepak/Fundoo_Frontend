@@ -222,9 +222,9 @@ function Displaynote(props) {
 
           {/* update single notes Colour | isArchive | isDeleted */}
           {/* pass handle archive and colour to ICONS */}
-          <div className="bottom">
-            <Icons className="icons-set" mode="update" handleColour={handleColour} handleArchive={handleArchive} />
-            <button className="closebutton" autoFocus onClick={handleClose} style={{ backgroundColor: colour }}>
+          <div className="display-bottom">
+            <Icons className="display-icons" mode="update" handleColour={handleColour} handleArchive={handleArchive} />
+            <button className="display-close" autoFocus onClick={handleClose} style={{ backgroundColor: colour }}>
               close
             </button>
           </div>
